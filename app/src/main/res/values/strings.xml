@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">性能优化示例</string>
+
+    <string name="title_activity_app_start">AppStartActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="hp_name_tab0">Tab1</string>
+    <string name="hp_name_tab1">Tab2</string>
+    <string name="hp_name_tab2">Tab3</string>
+    <string name="title_activity_layout_per">LayoutPerActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/appStarter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ececec"
+    android:gravity="center"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="400dip"
+    android:layout_height="600dip"
+    android:orientation="vertical"
+    android:gravity="center">
+    <ImageView
+        android:layout_width="220dip"
+        android:layout_height="220dip"
+        android:id="@+id/logo"
+        android:background="@mipmap/logo"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="打造高质量应用"/>
+</LinearLayout>
+</LinearLayout>

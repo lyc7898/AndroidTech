@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/main_bg" >
+
+    <LinearLayout
+        android:id="@+id/main_desk_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topbar_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="0dp" >
+
+        <FrameLayout
+            android:id="@+id/main_desk_title_more_btn"
+            android:layout_width="60dip"
+            android:layout_height="44dip" >
+
+            <ImageView
+                android:layout_width="60dip"
+                android:layout_height="44dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/hp_button_right" />
+
+            <ImageView
+                android:id="@+id/main_desk_title_more_new_flag"
+                android:layout_width="9dip"
+                android:layout_height="9dip"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="21dip"
+                android:layout_marginTop="9dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_red_dot"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/main_desk_title_tab_mymusic"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:text="@string/hp_name_tab0"
+                android:textColor="@color/white"
+                android:textSize="18dip" />
+
+            <ImageView
+                android:id="@+id/main_desk_title_tab_mymusic_new_flag"
+                android:layout_width="9dip"
+                android:layout_height="9dip"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="12dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_red_dot"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/main_desk_title_tab_musichall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="@string/hp_name_tab1"
+            android:textColor="#66FFFFFF"
+            android:textSize="18dip" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dip" >
+
+            <TextView
+                android:id="@+id/main_desk_title_tab_find"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:text="@string/hp_name_tab2"
+                android:textColor="#66FFFFFF"
+                android:textSize="18dip" />
+
+            <ImageView
+                android:id="@+id/main_desk_title_tab_find_new_flag"
+                android:layout_width="9dip"
+                android:layout_height="9dip"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="12dip"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_red_dot"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/main_desk_title_search_btn"
+            android:layout_width="60dip"
+            android:layout_height="44dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/hp_button_right" />
+    </LinearLayout>
+
+    <com.ycl.androidtech.fragment.homepage.GmfBaseViewPager
+        android:id="@+id/main_desk_fragment_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_desk_title_bar" />
+
+</RelativeLayout>

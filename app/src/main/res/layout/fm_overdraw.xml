@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.ycl.androidtech.ui.MultiCardsView
+        android:id="@+id/cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </com.ycl.androidtech.ui.MultiCardsView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_overdraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="过度绘制" />
+
+        <Button
+            android:id="@+id/btn_perfectdraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="合理绘制" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id ="@+id/test_bg">
+
+    <Button
+        android:layout_marginTop="200dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转到二级页面"
+        android:id="@+id/btn_jump2sec"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

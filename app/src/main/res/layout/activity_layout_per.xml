@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.ycl.androidtech.ui.TopBar
+        android:id="@+id/lay_out_topbar"
+        android:layout_width="fill_parent"
+        android:background="@color/black_overlay"
+        android:layout_height="50dp"/>
+    <TextView
+        android:id="@+id/layout_per_txt_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/lay_out_topbar"
+        android:background="@color/yellow"
+        android:gravity="center"
+        android:text="TITLE"
+        android:textColor="#FFFF0000"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/layout_per_txt_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/lay_out_topbar"
+        android:layout_toEndOf="@id/layout_per_txt_1"
+        android:layout_toRightOf="@id/layout_per_txt_1"
+        android:background="@color/blue"
+        android:text="Des"
+        android:textColor="#FFFF0000"
+        android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/imageView_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_per_txt_2"
+        android:layout_gravity="center"
+        android:layout_toEndOf="@id/layout_per_txt_1"
+        android:layout_toRightOf="@id/layout_per_txt_1"
+        android:background="@mipmap/ic_launcher" />
+</RelativeLayout>

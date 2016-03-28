@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/text_bm_mem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#aa664411"
+        android:text="当前图片占用内存："
+        android:textSize="28sp"/>
+    <ImageView
+        android:id="@+id/viewstub_demo_imageview"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/test2"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
