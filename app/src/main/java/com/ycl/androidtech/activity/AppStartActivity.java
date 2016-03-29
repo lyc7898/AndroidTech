@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.ycl.androidtech.R;
@@ -32,14 +35,22 @@ public class AppStartActivity extends Activity {
         mLogo = (ImageView) this.findViewById(R.id.logo);
         //mStartHandler.sendEmptyMessageDelayed(0,1000);
        // useAnimation();
-        useAnimator();
+        // useAnimator();
+        Button mTest = (Button)this.findViewById(R.id.button_test);
+        mTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                useAnimation();
+               // useAnimator();
+            }
+        });
         TimeMonitorManager.getInstance().getTimeMonitor(TimeMonitorConfig.TIME_MONITOR_ID_APPLICATION_START).recodingTimeTag("AppStartActivity_createOver");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        TimeMonitorManager.getInstance().getTimeMonitor(TimeMonitorConfig.TIME_MONITOR_ID_APPLICATION_START).end("AppStartActivity_start",false);
+        TimeMonitorManager.getInstance().getTimeMonitor(TimeMonitorConfig.TIME_MONITOR_ID_APPLICATION_START).end("AppStartActivity_start", false);
     }
 
     /*
@@ -50,10 +61,9 @@ public class AppStartActivity extends Activity {
         RotateAnimation画面转移旋转动画效果
         * */
     private void useAnimation() {
-      Animation mRota = new RotateAnimation(0, 360);
+        Animation mRota = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         ScaleAnimation mScale = new ScaleAnimation(0.0f, 1f, 0.0f, 1f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        mScale.setDuration(3000);
         mScale.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -62,7 +72,7 @@ public class AppStartActivity extends Activity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                mStartHandler.sendEmptyMessageDelayed(0,0);
+                mStartHandler.sendEmptyMessageDelayed(0, 0);
             }
 
             @Override
@@ -70,34 +80,34 @@ public class AppStartActivity extends Activity {
 
             }
         });
-        mScale.setDuration(3000);
-        mLogo.startAnimation(mScale);
-
+        AnimationSet animationSet = new AnimationSet(true);
+        animationSet.addAnimation(mRota);
+        animationSet.addAnimation(mScale);
+        animationSet.setDuration(3000);
+        mLogo.startAnimation(animationSet);
     }
+
     //属性动画
-    private void useAnimator(){
-        ObjectAnimator scalex = ObjectAnimator.ofFloat(mLogo, "scaleX", 0,1);
+    private void useAnimator() {
+        ObjectAnimator scalex = ObjectAnimator.ofFloat(mLogo, "scaleX", 0, 1);
         ObjectAnimator scaley = ObjectAnimator.ofFloat(mLogo, "scaleY", 0, 1);
         ObjectAnimator rotation = ObjectAnimator.ofFloat(mLogo, "rotation", 0.0f, 360f);
         rotation.addListener(new ObjectAnimator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                mStartHandler.sendEmptyMessageDelayed(0,0);
+                mStartHandler.sendEmptyMessageDelayed(0, 0);
             }
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
         });
         AnimatorSet mSetPlayer = new AnimatorSet();
@@ -105,6 +115,7 @@ public class AppStartActivity extends Activity {
         mSetPlayer.play(scalex).with(scaley).with(rotation);
         mSetPlayer.start();
     }
+
     private Handler mStartHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

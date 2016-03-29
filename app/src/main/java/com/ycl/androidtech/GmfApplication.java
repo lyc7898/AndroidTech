@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 
 import com.ycl.androidtech.database.DBManager;
-import com.ycl.androidtech.hotfix.HotFixManager;
 import com.ycl.androidtech.statistics.TimeMonitorConfig;
 import com.ycl.androidtech.statistics.TimeMonitorManager;
 
