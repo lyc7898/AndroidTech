@@ -89,6 +89,7 @@ public class AppStartActivity extends Activity {
 
     // Ù–‘∂Øª≠
     private void useAnimator() {
+        mLogo.setLayerType(View.LAYER_TYPE_HARDWARE,null);
         ObjectAnimator scalex = ObjectAnimator.ofFloat(mLogo, "scaleX", 0, 1);
         ObjectAnimator scaley = ObjectAnimator.ofFloat(mLogo, "scaleY", 0, 1);
         ObjectAnimator rotation = ObjectAnimator.ofFloat(mLogo, "rotation", 0.0f, 360f);
@@ -99,6 +100,7 @@ public class AppStartActivity extends Activity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                mLogo.setLayerType(View.LAYER_TYPE_NONE,null);
                 mStartHandler.sendEmptyMessageDelayed(0, 0);
             }
 
