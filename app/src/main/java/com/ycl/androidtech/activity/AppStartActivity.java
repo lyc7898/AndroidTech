@@ -27,7 +27,7 @@ import com.ycl.androidtech.monitor.time.TimeMonitorManager;
 public class AppStartActivity extends Activity {
 
     ImageView mLogo = null;
-
+    private final int TIME_ANIMATION = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         TimeMonitorManager.getInstance().getTimeMonitor(TimeMonitorConfig.TIME_MONITOR_ID_APPLICATION_START).recodingTimeTag("AppStartActivity_create");
@@ -77,7 +77,7 @@ public class AppStartActivity extends Activity {
         AnimationSet animationSet = new AnimationSet(true);
         animationSet.addAnimation(mRota);
         animationSet.addAnimation(mScale);
-        animationSet.setDuration(3000);
+        animationSet.setDuration(TIME_ANIMATION);
         mLogo.startAnimation(animationSet);
     }
 
@@ -107,7 +107,7 @@ public class AppStartActivity extends Activity {
             }
         });
         AnimatorSet mSetPlayer = new AnimatorSet();
-        mSetPlayer.setDuration(3000);
+        mSetPlayer.setDuration(TIME_ANIMATION);
         mSetPlayer.play(scalex).with(scaley).with(rotation);
         mSetPlayer.start();
     }

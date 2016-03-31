@@ -9,32 +9,34 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.ycl.androidtech.R;
 import com.ycl.androidtech.activity.HomePageActivity;
 import com.ycl.androidtech.fragment.base.BaseFragment;
+import com.ycl.androidtech.monitor.ui.UiPerfMonitor;
 
 /**
  * Created by yuchengluo on 2015/6/29.
  * UI¿¨¶Ù¼à¿ØFramgent
  */
 public class UiPerfFragment extends BaseFragment {
-    LinearLayout mtest = null;
+    RelativeLayout mtest = null;
     Button mJump = null;
     int mColor = Color.WHITE;
     private Context mContext = null;
+
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmet_test, container, false);
         mContext = getHostActivity();
-        mtest = (LinearLayout) view.findViewById(R.id.test_bg);
+        mtest = (RelativeLayout) view.findViewById(R.id.test_bg);
         mtest.setBackgroundColor(mColor);
-        mJump = (Button) view.findViewById(R.id.btn_jump2sec);
+        mJump = (Button) view.findViewById(R.id.btn_start_perfmon);
         mJump.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
-                                         Bundle mBundle = new Bundle();
-                                         ((HomePageActivity) mContext).addSecondFragment(TestDBFragment.class, mBundle, null);
+                                         startMonitorPerf();
                                      }
                                  }
 
@@ -43,9 +45,11 @@ public class UiPerfFragment extends BaseFragment {
     }
 
     public void setBg(int color) {
-        mColor = color;
+        //mColor = color;
     }
-
+    private void startMonitorPerf(){
+        UiPerfMonitor.getmInstance().startMonitor();
+    }
     @Override
     protected void resume() {
 

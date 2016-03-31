@@ -10,7 +10,7 @@ import com.ycl.androidtech.utils.GLog;
  */
 public class LogPrinter implements Printer{
     private final String TAG = "LogPrinter";
-    private int print_num = 0;
+    private int print_num = 1;
     @Override
     public void println(String x) {
         GLog.d(TAG,"println:" + x +"\r\n num: " + (print_num++));

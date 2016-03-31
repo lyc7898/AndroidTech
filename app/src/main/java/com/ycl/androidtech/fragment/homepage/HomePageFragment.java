@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.ycl.androidtech.R;
 import com.ycl.androidtech.config.PageIndexer;
 import com.ycl.androidtech.fragment.PerformanceFragment;
+import com.ycl.androidtech.fragment.TestThirdFragment;
 import com.ycl.androidtech.fragment.UiPerfFragment;
 import com.ycl.androidtech.fragment.base.BaseFragment;
 import com.ycl.androidtech.fragment.base.MyFragmentPagerAdapter;
@@ -131,9 +132,8 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
         fragment2.setRetainInstance(true);
         fragment2.setBg(Color.RED);
         mFragments[1] = fragment2;
-        UiPerfFragment fragment3 = new UiPerfFragment();
+        TestThirdFragment fragment3 = new TestThirdFragment();
         fragment3.setRetainInstance(true);
-        fragment3.setBg(Color.BLUE);
         //fragment3.setOnNewFlagChangedLitener(mOnNewFlagChangedLitener);
         mFragments[2] = fragment3;
         mAdapter = new MyFragmentStatePagerAdapter(mFragmentManager);

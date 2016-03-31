@@ -8,7 +8,7 @@ import android.os.Looper;
  */
 public class UiPerfMonitor implements UiPerfMonitorConfig{
     private static UiPerfMonitor mInstance = null;
-    private LogPrinter looperPrinter;
+    private LogPrinter mLogPrinter;
     public synchronized static UiPerfMonitor getmInstance(){
         if(null == mInstance){
             mInstance = new UiPerfMonitor();
@@ -18,11 +18,12 @@ public class UiPerfMonitor implements UiPerfMonitorConfig{
 
     //≥ı ºªØ
     public UiPerfMonitor(){
+        mLogPrinter = new LogPrinter();
         init();
     }
 
     public void startMonitor(){
-        Looper.getMainLooper().setMessageLogging(looperPrinter);
+        Looper.getMainLooper().setMessageLogging(mLogPrinter);
     }
     private void init(){
 
