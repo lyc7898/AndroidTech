@@ -18,6 +18,7 @@ import com.ycl.androidtech.utils.GLog;
 
 /**
  * Created by yuchengluo on 2015/7/16.
+ * 过度绘制DEMO-实现一个没有过度绘制的自定义View
  */
 public class OverDrawFragment extends BaseFragment {
     private int cardResId[] = {R.mipmap.test4, R.mipmap.test3,

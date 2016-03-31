@@ -16,6 +16,7 @@ import com.ycl.androidtech.fragment.base.BaseFragment;
 
 /**
  * Created by yuchengluo on 2015/7/16.
+ * UI性能优化首页Fragment
  */
 public class UiPerfFragment extends BaseFragment implements View.OnClickListener {
     private Button mBtn_OverDraw,mBtn_Xml,mBtn_ListView,mBtn_Merge;
@@ -103,7 +104,7 @@ public class UiPerfFragment extends BaseFragment implements View.OnClickListener
             ((HomePageActivity) mContext).addSecondFragment(OverDrawFragment.class, mBundle, null);
         }else if(v.getId() == mBtn_Xml.getId()){
             Bundle mBundle = new Bundle();
-            ((HomePageActivity) mContext).addSecondFragment(XmlShowFragment.class, mBundle, null);
+            ((HomePageActivity) mContext).addSecondFragment(ViewStubDemoFragment.class, mBundle, null);
         }else if(v.getId() == mBtn_ListView.getId()){
             Bundle mBundle = new Bundle();
             ((HomePageActivity) mContext).addSecondFragment(ListViewFragment.class, mBundle, null);

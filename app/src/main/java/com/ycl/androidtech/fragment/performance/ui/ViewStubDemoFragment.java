@@ -13,8 +13,9 @@ import com.ycl.androidtech.fragment.base.BaseFragment;
 
 /**
  * Created by yuchengluo on 2015/7/30.
+ * ViewStubµÄÊ¹ÓÃ
  */
-public class XmlShowFragment extends BaseFragment{
+public class ViewStubDemoFragment extends BaseFragment{
     private Context mContext = null;
     static private boolean changeView = false;
     @Override

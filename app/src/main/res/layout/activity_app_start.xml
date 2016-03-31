@@ -16,12 +16,12 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="打造高质量应用"/>
-
+<!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="开始动画"
         android:id="@+id/button_test"
         android:layout_gravity="center_horizontal" />
-
+-->
 </LinearLayout>

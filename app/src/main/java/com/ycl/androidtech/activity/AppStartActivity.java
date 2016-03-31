@@ -1,6 +1,8 @@
 package com.ycl.androidtech.activity;
 
-
+/**
+ * 启动页面，包含一个启动动画
+ * */
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -35,15 +37,7 @@ public class AppStartActivity extends Activity {
         mLogo = (ImageView) this.findViewById(R.id.logo);
         //mStartHandler.sendEmptyMessageDelayed(0,1000);
        // useAnimation();
-        // useAnimator();
-        Button mTest = (Button)this.findViewById(R.id.button_test);
-        mTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                useAnimation();
-               // useAnimator();
-            }
-        });
+        useAnimator();
         TimeMonitorManager.getInstance().getTimeMonitor(TimeMonitorConfig.TIME_MONITOR_ID_APPLICATION_START).recodingTimeTag("AppStartActivity_createOver");
     }
 
