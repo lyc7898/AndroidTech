@@ -1,4 +1,4 @@
-package com.ycl.androidtech.statistics;
+package com.ycl.androidtech.monitor.time;
 
 import com.ycl.androidtech.utils.GLog;
 
@@ -42,7 +42,7 @@ public class TimeMonitor {
             mTimeTag.remove(tag);
         }
         long time = System.currentTimeMillis() - mStartTime;
-        //GLog.d(TAG, tag + ":" + time + "ms");
+        GLog.d(TAG, tag + ":" + time + "ms");
         mTimeTag.put(tag, time);
     }
     public void end(String tag,boolean writeLog){

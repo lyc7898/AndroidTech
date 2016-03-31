@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ycl.androidtech.R;
 import com.ycl.androidtech.config.PageIndexer;
 import com.ycl.androidtech.fragment.PerformanceFragment;
-import com.ycl.androidtech.fragment.TestFragment;
+import com.ycl.androidtech.fragment.UiPerfFragment;
 import com.ycl.androidtech.fragment.base.BaseFragment;
 import com.ycl.androidtech.fragment.base.MyFragmentPagerAdapter;
 
@@ -36,10 +36,10 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
     public GmfBaseViewPager mPagerDetail;
     public ImageView mSearchBtn;
     public FrameLayout mMoreBtn;
-    public TextView mMyMusicTab;
+    public TextView mPerfTab;
     public TextView mMusicHallTab;
     public TextView mFindTab;
-    public ImageView mMyMusicNewFlag;
+    public ImageView mPerfNewFlag;
     public ImageView mFindNewFlag;
     public ImageView mMoreNewFlag;
     private FragmentManager mFragmentManager;
@@ -65,7 +65,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
         public void onNewFlagShow(int newFlag) {
             switch (newFlag) {
                 case MY_MUSIC_NEW_FLAG:
-                    mMyMusicNewFlag.setVisibility(View.VISIBLE);
+                    mPerfNewFlag.setVisibility(View.VISIBLE);
                     break;
                 case FIND_NEW_FLAG:
                     mFindNewFlag.setVisibility(View.VISIBLE);
@@ -80,7 +80,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
         public void onNewFlagHide(int newFlag) {
             switch (newFlag) {
                 case MY_MUSIC_NEW_FLAG:
-                    mMyMusicNewFlag.setVisibility(View.GONE);
+                    mPerfNewFlag.setVisibility(View.GONE);
                     break;
                 case FIND_NEW_FLAG:
                     mFindNewFlag.setVisibility(View.GONE);
@@ -99,10 +99,10 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
         mPagerDetail = (GmfBaseViewPager)view.findViewById(R.id.main_desk_fragment_pager);
         mSearchBtn = (ImageView)view.findViewById(R.id.main_desk_title_search_btn);
         mMoreBtn =  (FrameLayout)view.findViewById(R.id.main_desk_title_more_btn);
-        mMyMusicTab = (TextView)view.findViewById(R.id.main_desk_title_tab_mymusic);
+        mPerfTab = (TextView)view.findViewById(R.id.main_desk_title_tab_mymusic);
         mMusicHallTab = (TextView)view.findViewById(R.id.main_desk_title_tab_musichall);
         mFindTab = (TextView)view.findViewById(R.id.main_desk_title_tab_find);
-        mMyMusicNewFlag = (ImageView)view.findViewById(R.id.main_desk_title_tab_mymusic_new_flag);
+        mPerfNewFlag = (ImageView)view.findViewById(R.id.homepage_tab_performance_new_flag);
         mFindNewFlag = (ImageView)view.findViewById(R.id.main_desk_title_tab_find_new_flag);
         mMoreNewFlag = (ImageView)view.findViewById(R.id.main_desk_title_more_new_flag);
 
@@ -119,7 +119,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
        // fragment1.setOnNewFragChangedListener(mOnNewFlagChangedLitener);
         mFragments[0] = fragment1;
         fragment1.setRetainInstance(true);
-        TestFragment fragment2 = new TestFragment();
+        UiPerfFragment fragment2 = new UiPerfFragment();
 //        fragment2.setOnMusicHallsPageChanged(new OnMusicHallsPageChanged() {
 //
 //            @Override
@@ -131,7 +131,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
         fragment2.setRetainInstance(true);
         fragment2.setBg(Color.RED);
         mFragments[1] = fragment2;
-        TestFragment fragment3 = new TestFragment();
+        UiPerfFragment fragment3 = new UiPerfFragment();
         fragment3.setRetainInstance(true);
         fragment3.setBg(Color.BLUE);
         //fragment3.setOnNewFlagChangedLitener(mOnNewFlagChangedLitener);
@@ -164,7 +164,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
                     }
                 }
                 if (position == 0) {
-                    mMyMusicNewFlag.setVisibility(View.GONE);
+                    mPerfNewFlag.setVisibility(View.GONE);
                 } else if (position == 2) {
                     mFindNewFlag.setVisibility(View.GONE);
                 }
@@ -188,7 +188,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
 
             }
         });
-        mMyMusicTab.setOnClickListener(mTabClickListener);
+        mPerfTab.setOnClickListener(mTabClickListener);
         mMusicHallTab.setOnClickListener(mTabClickListener);
         mFindTab.setOnClickListener(mTabClickListener);
         mSearchBtn.setOnClickListener(new View.OnClickListener() {
@@ -216,7 +216,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
         @Override
         public void onClick(View v) {
             int position = 0;
-            if (v == mMyMusicTab) {
+            if (v == mPerfTab) {
                 position = 0;
             } else if (v == mMusicHallTab) {
                 position = 1;
@@ -235,12 +235,12 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
 
     private void setSelectedTab(int position) {
         mViewIndex = position;
-        mMyMusicTab.setTextColor(0x66FFFFFF);
+        mPerfTab.setTextColor(0x66FFFFFF);
         mMusicHallTab.setTextColor(0x66FFFFFF);
         mFindTab.setTextColor(0x66FFFFFF);
         switch (mViewIndex) {
             case 0:
-                mMyMusicTab.setTextColor(0xFFFFFFFF);
+                mPerfTab.setTextColor(0xFFFFFFFF);
                 break;
             case 1:
                 mMusicHallTab.setTextColor(0xFFFFFFFF);;

@@ -10,6 +10,10 @@ This is a performance optimization project source code, including optimization o
 (4)memery:内存优化的一些DEMO。  
 二.框架类  
 1.简单的图片引擎：com.ycl.androidtech.image  
-2.数据库：databases。  
-3.statistics:打点LOG上报方案。  
-三.工具类 utils包下。  
+2.数据库：databases。
+三.工具类
+1.监控工具
+(1)UI卡顿监控 com.ycl.androidtech.monitor.ui。
+(2)内存监控：com.ycl.androidtech.monitor.memory。
+(3)耗时上报工具：com.ycl.androidtech.monitor.time
+

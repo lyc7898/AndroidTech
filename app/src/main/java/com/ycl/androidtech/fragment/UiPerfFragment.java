@@ -16,8 +16,9 @@ import com.ycl.androidtech.fragment.base.BaseFragment;
 
 /**
  * Created by yuchengluo on 2015/6/29.
+ * UI¿¨¶Ù¼à¿ØFramgent
  */
-public class TestFragment extends BaseFragment {
+public class UiPerfFragment extends BaseFragment {
     LinearLayout mtest = null;
     Button mJump = null;
     int mColor = Color.WHITE;

@@ -1,4 +1,4 @@
-package com.ycl.androidtech.statistics;
+package com.ycl.androidtech.monitor.time;
 
 /**
  * Created by yuchengluo on 2016/3/25.

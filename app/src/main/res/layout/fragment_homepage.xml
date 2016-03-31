@@ -56,7 +56,7 @@
                 android:textSize="18dip" />
 
             <ImageView
-                android:id="@+id/main_desk_title_tab_mymusic_new_flag"
+                android:id="@+id/homepage_tab_performance_new_flag"
                 android:layout_width="9dip"
                 android:layout_height="9dip"
                 android:layout_gravity="right|top"

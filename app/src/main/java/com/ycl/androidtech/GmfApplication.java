@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.res.Configuration;
 
 import com.ycl.androidtech.database.DBManager;
-import com.ycl.androidtech.statistics.TimeMonitorConfig;
-import com.ycl.androidtech.statistics.TimeMonitorManager;
+import com.ycl.androidtech.monitor.time.TimeMonitorConfig;
+import com.ycl.androidtech.monitor.time.TimeMonitorManager;
 
 /**
  * Created by yuchengluo on 2015/6/25.

@@ -20,8 +20,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.ycl.androidtech.R;
-import com.ycl.androidtech.statistics.TimeMonitorConfig;
-import com.ycl.androidtech.statistics.TimeMonitorManager;
+import com.ycl.androidtech.monitor.time.TimeMonitorConfig;
+import com.ycl.androidtech.monitor.time.TimeMonitorManager;
 
 
 public class AppStartActivity extends Activity {
