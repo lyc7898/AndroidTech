@@ -1,6 +1,6 @@
 # AndroidTech
 This is a performance optimization project source code, including optimization of UI/memory and other aspects.
-这是一个教学DEMO，主要是性能优化方面的一些案例，架构主要分成三个方面。\r\n
+这是一个教学DEMO，主要是性能优化方面的一些案例，架构主要分成三个方面。/r/n
 一.UI层(界面)
 1.全局只有两个Activity，启动页面AppStartActivity和主页面HomepageActivity，其它都是Fragment，所有界面间的切换都是Fragment的切换。
 2.所有的界面都在：com.ycl.androidtech.fragment包下，下一级目录：
