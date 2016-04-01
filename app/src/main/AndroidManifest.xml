@@ -3,7 +3,8 @@
     package="com.ycl.androidtech" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="Android.permission.MOUNT_UNMOUNT_FIFESYSTEMS"/>
     <application
         android:name=".GmfApplication"
         android:allowBackup="true"

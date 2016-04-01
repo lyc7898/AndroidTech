@@ -18,7 +18,7 @@ import com.ycl.androidtech.R;
 import com.ycl.androidtech.config.PageIndexer;
 import com.ycl.androidtech.fragment.PerformanceFragment;
 import com.ycl.androidtech.fragment.TestThirdFragment;
-import com.ycl.androidtech.fragment.UiPerfFragment;
+import com.ycl.androidtech.fragment.UiPerfMoniterFragment;
 import com.ycl.androidtech.fragment.base.BaseFragment;
 import com.ycl.androidtech.fragment.base.MyFragmentPagerAdapter;
 
@@ -120,7 +120,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
        // fragment1.setOnNewFragChangedListener(mOnNewFlagChangedLitener);
         mFragments[0] = fragment1;
         fragment1.setRetainInstance(true);
-        UiPerfFragment fragment2 = new UiPerfFragment();
+        UiPerfMoniterFragment fragment2 = new UiPerfMoniterFragment();
 //        fragment2.setOnMusicHallsPageChanged(new OnMusicHallsPageChanged() {
 //
 //            @Override

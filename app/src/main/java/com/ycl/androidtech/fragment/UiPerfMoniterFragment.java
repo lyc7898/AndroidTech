@@ -20,7 +20,7 @@ import com.ycl.androidtech.monitor.ui.UiPerfMonitor;
  * Created by yuchengluo on 2015/6/29.
  * UI¿¨¶Ù¼à¿ØFramgent
  */
-public class UiPerfFragment extends BaseFragment {
+public class UiPerfMoniterFragment extends BaseFragment {
     RelativeLayout mtest = null;
     Button mJump = null;
     int mColor = Color.WHITE;
