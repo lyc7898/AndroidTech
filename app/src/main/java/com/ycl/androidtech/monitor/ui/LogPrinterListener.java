@@ -5,5 +5,5 @@ package com.ycl.androidtech.monitor.ui;
  */
 public interface LogPrinterListener {
     void onStartLoop();
-    void onEndLoop(String loginfo,int level); //一次监听结束，level级别
+    void onEndLoop(long starttime,long endtime,String loginfo,int level); //一次监听结束，level级别
 }

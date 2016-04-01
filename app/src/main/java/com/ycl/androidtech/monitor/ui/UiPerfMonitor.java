@@ -56,7 +56,7 @@ public class UiPerfMonitor implements UiPerfMonitorConfig,LogPrinterListener{
     }
 
     @Override
-    public void  onEndLoop(String loginfo,int level) {
+    public void  onEndLoop(long starttime,long endtime,String loginfo,int level) {
         mCpuInfoSampler.stop();
     }
 

@@ -23,16 +23,18 @@ public class LogPrinter implements Printer, UiPerfMonitorConfig {
             startTime = System.currentTimeMillis();
             mLogPrinter.onStartLoop();
         } else {
-            long time = System.currentTimeMillis() - startTime;
-            GLog.d(TAG, "dispatch handler time : " + time);
-            execuTime(x, time);
+            long endtime = System.currentTimeMillis();
+
+            execuTime(x, startTime,endtime);
             startTime = 0;
         }
     }
 
     //根据需要可以定义更多级别
-    private void execuTime(String loginfo, long time) {
+    private void execuTime(String loginfo, long starttime,long endtime) {
         int level = 0;
+        long time = endtime - starttime;
+        GLog.d(TAG, "dispatch handler time : " + time);
         if (time > TIME_WARNING_LEVEL_2) {
             GLog.e(TAG, "Warning_LEVEL_2:\r\n" + "println:" + loginfo);
             level = UI_PERF_LEVEL_2;
@@ -40,6 +42,6 @@ public class LogPrinter implements Printer, UiPerfMonitorConfig {
             GLog.d(TAG, "Warning_LEVEL_1:\r\n" + "println:" + loginfo);
             level = UI_PERF_LEVEL_1;
         }
-        mLogPrinter.onEndLoop(loginfo, level);
+        mLogPrinter.onEndLoop(starttime,endtime,loginfo, level);
     }
 }
