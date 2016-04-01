@@ -36,7 +36,7 @@ public class UiPerfMoniterFragment extends BaseFragment {
         mJump.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
-                                         startMonitorPerf();
+                                         changeMonitorPerf();
                                      }
                                  }
 
@@ -47,8 +47,14 @@ public class UiPerfMoniterFragment extends BaseFragment {
     public void setBg(int color) {
         //mColor = color;
     }
-    private void startMonitorPerf(){
-        UiPerfMonitor.getmInstance().startMonitor();
+    private void changeMonitorPerf(){
+        if(UiPerfMonitor.getmInstance().isMonitoring()) {
+            UiPerfMonitor.getmInstance().stopMonitor();
+            mJump.setText(this.getResources().getText(R.string.monitor_control_start));
+        }else{
+            UiPerfMonitor.getmInstance().startMonitor();
+            mJump.setText(this.getResources().getText(R.string.monitor_control_stop));
+        }
     }
     @Override
     protected void resume() {

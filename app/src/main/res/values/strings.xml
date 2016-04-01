@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">性能优化示例</string>
-
+    <string name="monitor_control_start">启动监控</string>
+    <string name="monitor_control_stop">停止监控</string>
     <string name="title_activity_app_start">AppStartActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
