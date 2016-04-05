@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class BaseSampler {
     private final String TAG = "BaseSampler";
     private Handler mControlHandler = null;
-    private int intervalTime = 500; //ms采样间隔
+    private int intervalTime = 50; //ms采样间隔
     private AtomicBoolean mIsSampling = new AtomicBoolean(false);
     public BaseSampler(){
         GLog.d(TAG,"Init BaseSampler");
