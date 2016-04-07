@@ -69,7 +69,7 @@ public class UiPerfMonitor implements UiPerfMonitorConfig, LogPrinterListener {
     public void onEndLoop(long starttime, long endtime, String loginfo, int level) {
         mCpuInfoSampler.stop();
         switch (level) {
-            case TIME_WARNING_LEVEL_1:
+            case UI_PERF_LEVEL_1:
                 GLog.d(TAG, "onEndLoop TIME_WARNING_LEVEL_1 & cpusize:" + mCpuInfoSampler.getStatCpuInfoList().size());
                 if (mCpuInfoSampler.getStatCpuInfoList().size() > 0) {
                     StringBuffer sb = new StringBuffer("startTime:");
@@ -85,23 +85,9 @@ public class UiPerfMonitor implements UiPerfMonitorConfig, LogPrinterListener {
                     mLogWriteThread.saveLog(sb.toString());
                 }
                 break;
-            case TIME_WARNING_LEVEL_2:
+            case UI_PERF_LEVEL_2:
                 break;
             default:
-                GLog.d(TAG, "onEndLoop TIME_WARNING_LEVEL_1 & cpusize:" + mCpuInfoSampler.getStatCpuInfoList().size());
-                if (mCpuInfoSampler.getStatCpuInfoList().size() > 0) {
-                    StringBuffer sb = new StringBuffer("startTime:");
-                    sb.append(starttime);
-                    sb.append(" endTime:");
-                    sb.append(endtime);
-                    sb.append(" handleTime:");
-                    sb.append(endtime-starttime);
-                    for (CpuInfo info : mCpuInfoSampler.getStatCpuInfoList()) {
-                        sb.append("\r\n");
-                        sb.append(info.toString());
-                    }
-                    mLogWriteThread.saveLog(sb.toString());
-                }
         }
     }
 }
