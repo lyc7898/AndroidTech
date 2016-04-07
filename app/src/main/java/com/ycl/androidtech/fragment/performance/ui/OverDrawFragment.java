@@ -21,8 +21,8 @@ import com.ycl.androidtech.utils.GLog;
  * 过度绘制DEMO-实现一个没有过度绘制的自定义View
  */
 public class OverDrawFragment extends BaseFragment {
-    private int cardResId[] = {R.mipmap.test1, R.mipmap.test3,
-            R.mipmap.test2, R.mipmap.test1};
+    private int cardResId[] = {R.mipmap.test3, R.mipmap.test3,
+            R.mipmap.test3, R.mipmap.test3};
     private MultiCardsView multicardsView = null;
 
     @Override
@@ -32,8 +32,8 @@ public class OverDrawFragment extends BaseFragment {
         multicardsView.enableOverdrawOpt(true);
         int width = getResources().getDisplayMetrics().widthPixels;
         int height = getResources().getDisplayMetrics().heightPixels;
-        int cardWidth = width /3;
-        int cardHeight = height /3;
+        int cardWidth = width /2;
+        int cardHeight = height /2;
         int yOffset = 40;
         int xOffset = 40;
         for (int i = 0; i < cardResId.length; i++) {

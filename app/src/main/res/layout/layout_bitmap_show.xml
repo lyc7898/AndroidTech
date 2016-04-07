@@ -12,6 +12,6 @@
     <ImageView
         android:id="@+id/viewstub_demo_imageview"
         android:layout_width="wrap_content"
-        android:src="@mipmap/test2"
+        android:src="@mipmap/test3"
         android:layout_height="wrap_content"/>
 </LinearLayout>
