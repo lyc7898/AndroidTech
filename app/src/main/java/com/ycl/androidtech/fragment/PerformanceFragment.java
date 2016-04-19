@@ -79,21 +79,6 @@ public class PerformanceFragment extends BaseFragment  implements View.OnClickLi
     }
 
     @Override
-    public int getFromID() {
-        return 0;
-    }
-
-    @Override
-    public void loginOk() {
-
-    }
-
-    @Override
-    public void logoutOk() {
-
-    }
-
-    @Override
     public void onClick(View v) {
        if(v.getId() == mBtn_UiPerf.getId()){
            Bundle mBundle = new Bundle();

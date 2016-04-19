@@ -117,22 +117,6 @@ public class ImageGridFragment extends BaseFragment {
 
     }
 
-    @Override
-    public int getFromID() {
-        return 0;
-    }
-
-    @Override
-    public void loginOk() {
-
-    }
-
-    @Override
-    public void logoutOk() {
-
-    }
-
-
     private class ImageAdapter extends BaseAdapter {
         private final Context mContext;
         private LayoutInflater mInflater;

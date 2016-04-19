@@ -340,11 +340,6 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
     }
 
     @Override
-    public int getFromID() {
-        return 0;
-    }
-
-    @Override
     protected void initData(Bundle data) {
         mFragmentManager = getChildFragmentManager();
         int gotoAppIndex = data.getInt(APP_INDEX_KEY, TAB_VIEW_00);
@@ -438,35 +433,5 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
                 }
             }
         }
-    }
-
-    @Override
-    public void loginOk() {
-        if (mFragments != null && isAdded()) {
-            for (BaseFragment f : mFragments) {
-                if (f != null) {
-                    f.loginOk();
-                }
-            }
-        }
-    }
-
-    @Override
-    public void logoutOk() {
-        if (mFragments != null && isAdded()) {
-            for (BaseFragment f : mFragments) {
-                if (f != null) {
-                    f.logoutOk();
-                }
-            }
-        }
-        runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                gotoSelectedTab(0);
-            }
-        });
-
     }
 }

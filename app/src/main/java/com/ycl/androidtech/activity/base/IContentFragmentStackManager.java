@@ -28,7 +28,4 @@ public interface IContentFragmentStackManager {
 
     void destroy();
 
-    public void loginOk();
-
-    public void logoutOk();
 }

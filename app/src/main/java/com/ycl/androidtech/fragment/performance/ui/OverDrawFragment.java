@@ -146,19 +146,4 @@ public class OverDrawFragment extends BaseFragment {
     protected void initData(Bundle data) {
 
     }
-
-    @Override
-    public int getFromID() {
-        return 0;
-    }
-
-    @Override
-    public void loginOk() {
-
-    }
-
-    @Override
-    public void logoutOk() {
-
-    }
 }

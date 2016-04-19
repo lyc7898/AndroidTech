@@ -10,7 +10,7 @@ import java.io.File;
 
 /**
  * Created by yuchengluo on 2016/3/31.
- * UI卡顿监控管理类
+ * UI Performance Monitor Manager
  */
 public class UiPerfMonitor implements UiPerfMonitorConfig, LogPrinterListener {
     private static UiPerfMonitor mInstance = null;
@@ -27,7 +27,7 @@ public class UiPerfMonitor implements UiPerfMonitorConfig, LogPrinterListener {
         return mInstance;
     }
 
-    //初始化
+    //
     public UiPerfMonitor() {
         mCpuInfoSampler = new CpuInfoSampler();
         mLogPrinter = new LogPrinter(this);
@@ -50,7 +50,7 @@ public class UiPerfMonitor implements UiPerfMonitorConfig, LogPrinterListener {
         return monitorState == UI_PERF_MONITER_START;
     }
 
-    //初始化日志路径
+    //Init Log file dir
     private void initLogpath() {
         File logpath = new File(LOG_PATH);
         if (!logpath.exists()) {

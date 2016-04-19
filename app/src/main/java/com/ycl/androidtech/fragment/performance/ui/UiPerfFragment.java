@@ -83,21 +83,6 @@ public class UiPerfFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public int getFromID() {
-        return 0;
-    }
-
-    @Override
-    public void loginOk() {
-
-    }
-
-    @Override
-    public void logoutOk() {
-
-    }
-
-    @Override
     public void onClick(View v) {
         if(v.getId() == mBtn_OverDraw.getId()){
             Bundle mBundle = new Bundle();

@@ -18,8 +18,6 @@ public interface PageIndexer {
     public final static int APP_MAIN_2 = 1001;
     public final static int APP_MAIN_3 = 1002;
     public final static int APP_MAIN_4 = 1003;
-    //页面ID
-    public final static int APP_HOMEPAGE_FRAGMENT = 2015;
 
     //Activity跳转Bundle Key
     public final static String APP_INDEX_KEY = "app_index_key";

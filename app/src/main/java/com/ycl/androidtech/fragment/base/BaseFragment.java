@@ -370,24 +370,6 @@ public abstract class BaseFragment extends Fragment{
      */
     protected abstract void initData(Bundle data);
 
-    /**
-     * 保证页面路径的存在，为了上传听歌流水或者上次打开的页面而用
-     */
-    public abstract int getFromID();
-
-
-    public abstract void loginOk();
-
-    public abstract void logoutOk();
-
-    /**
-     * 如果需要对2G/3G开关做监听，重写此方法
-     */
-    public void networkStateChanged() {
-
-    }
-
-
 
     public BaseFragmentActivity getHostActivity() {
         try {

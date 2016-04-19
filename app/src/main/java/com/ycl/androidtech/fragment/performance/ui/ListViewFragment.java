@@ -78,21 +78,6 @@ public class ListViewFragment extends BaseFragment {
 
     }
 
-    @Override
-    public int getFromID() {
-        return 0;
-    }
-
-    @Override
-    public void loginOk() {
-
-    }
-
-    @Override
-    public void logoutOk() {
-
-    }
-
     /**
      * 自定义适配器
      */

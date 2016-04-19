@@ -280,26 +280,4 @@ public class ContentFragmentStackManager implements IContentFragmentStackManager
             System.gc();
         }
     }
-
-    @Override
-    public void loginOk() {
-        if (mFragmentStack != null) {
-            for (BaseFragment f : mFragmentStack) {
-                if (f != null) {
-                    f.loginOk();
-                }
-            }
-        }
-    }
-
-    @Override
-    public void logoutOk() {
-        if (mFragmentStack != null) {
-            for (BaseFragment f : mFragmentStack) {
-                if (f != null) {
-                    f.logoutOk();
-                }
-            }
-        }
-    }
 }

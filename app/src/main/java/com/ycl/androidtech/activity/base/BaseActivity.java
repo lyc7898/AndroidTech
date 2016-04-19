@@ -32,5 +32,4 @@ public abstract class BaseActivity extends FragmentActivity implements PageIndex
         }
     }
     public abstract boolean finishWhenJump();
-    public abstract int getSaveUIID();
 }

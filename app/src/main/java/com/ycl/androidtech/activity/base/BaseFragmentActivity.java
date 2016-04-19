@@ -128,26 +128,6 @@ public abstract class BaseFragmentActivity extends BaseActivity {
 		mContentFragmentStackManager.push(mFragmentCls, mArgs, fragmentFields);
 	}
 
-	protected void loginOk() {
-		if (mContentFragmentStackManager != null) {
-			GLog.d(TAG, "loginOk ----->1");
-			mContentFragmentStackManager.loginOk();
-			GLog.d(TAG, "loginOk ----->2");
-		}
-	}
-
-	protected void logoutOk() {
-		if (mContentFragmentStackManager != null) {
-			GLog.d(TAG, "logoutOk ----->1");
-			mContentFragmentStackManager.logoutOk();
-			GLog.d(TAG, "logoutOk ----->2");
-		}
-	}
-
-
-
-
-
 	public BaseFragment getCurrentFragment() {
 		return top();
 	}
