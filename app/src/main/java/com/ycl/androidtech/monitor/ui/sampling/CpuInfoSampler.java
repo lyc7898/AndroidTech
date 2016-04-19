@@ -14,7 +14,6 @@ import java.util.Map;
 
 /**
  * Created by yuchengluo on 2016/4/1.
- * 采样CPU数据
  */
 public class CpuInfoSampler extends BaseSampler {
     private final String TAG = "CpuInfoSampler";

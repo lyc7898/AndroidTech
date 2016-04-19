@@ -53,7 +53,6 @@ public class ImageResizer extends ImageWorker{
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeStream(is, null, options);
 		options.inPreferredConfig = Bitmap.Config.RGB_565;
-		// 计算缩放比例
 		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 		options.inJustDecodeBounds = false;
 
@@ -84,13 +83,11 @@ public class ImageResizer extends ImageWorker{
 	    }
 
     /**
-    * @Description: 计算图片缩放比例
     * @param @param options
     * @param @param reqWidth
     * @param @param reqHeight
     * @param @return
-    * @return int 缩小的比例
-    * @throws 
+    * @throws
     */
     public static int calculateInSampleSize(BitmapFactory.Options options,
             int reqWidth, int reqHeight) {

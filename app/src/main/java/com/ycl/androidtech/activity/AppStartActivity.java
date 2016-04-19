@@ -1,7 +1,7 @@
 package com.ycl.androidtech.activity;
 
 /**
- * 启动页面，包含一个启动动画
+ * First activity.
  * */
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -48,11 +48,10 @@ public class AppStartActivity extends Activity {
     }
 
     /*
-        补间动画
-        AlphaAnimation渐变透明度动画效果
-        ScaleAnimation渐变尺寸伸缩动画效果
-        TranslateAnimation画面转换位置移动动画效果
-        RotateAnimation画面转移旋转动画效果
+        AlphaAnimation
+        ScaleAnimation
+        TranslateAnimation
+        RotateAnimation
         * */
     private void useAnimation() {
         Animation mRota = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -81,7 +80,7 @@ public class AppStartActivity extends Activity {
         mLogo.startAnimation(animationSet);
     }
 
-    //属性动画
+    //AnimatorSet
     private void useAnimator() {
         mLogo.setLayerType(View.LAYER_TYPE_HARDWARE,null);
         ObjectAnimator scalex = ObjectAnimator.ofFloat(mLogo, "scaleX", 0, 1);

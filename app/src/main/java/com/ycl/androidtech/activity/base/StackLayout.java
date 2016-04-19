@@ -29,25 +29,24 @@ import java.util.Stack;
  * 
  * @author yuchengluo
  */
-@SuppressLint({ "HandlerLeak", "DrawAllocation" })
 public class StackLayout extends ViewGroup {
 
 	private static final String TAG = "StackLayout";
 
 	// for debug
-	private static final boolean DEBUG = true;
-	private long mSingleAnimationTime = 0;
-	private long mSingleAnimationCount = 0;
+	//private static final boolean DEBUG = true;
+//	private long mSingleAnimationTime = 0;
+//	private long mSingleAnimationCount = 0;
 
-	private static final int MSG_ENTER_ANIMATION = -1000;
-	private static final int MSG_EXIT_ANIMATION = -1001;
+//	private static final int MSG_ENTER_ANIMATION = -1000;
+//	private static final int MSG_EXIT_ANIMATION = -1001;
 
 	private static final int TRANSLATE_VELOCITY = 200;
 	private static final int ALPHA_VELOCITY = 200;
 	private static final int DECELERATION_THRESHOLD = 100;
-	private static final int ANIMATION_FRAME_DURATION = 1000 / 60;
+//	private static final int ANIMATION_FRAME_DURATION = 1000 / 60;
 
-	private static final int ANIMATION_TIME = 150;
+	private static final int ANIMATION_TIME = 200;
 
 	private static final int MAX_ALPHA = 100;
 
@@ -64,21 +63,21 @@ public class StackLayout extends ViewGroup {
 	private int mAlpha;
 	private int mWidth;
 
-	private boolean mStopAnimatingAlpha = false;
+//	private boolean mStopAnimatingAlpha = false;
 
 	private boolean mAnimating = false;
 
 	private OnStackAnimationListener mOnStackAnimationListener;
 
-	private int mDecelerationThreshold;
-	private int mTranslateVelocity;
-	private int mAlphaVelocity;
-	private float mAnimatingTranslateVelocity;
-	private float mAnimationPosition;
-	private int mAnimatingAlphaVelocity;
-	private float mAnimationAlpha;
-	private long mAnimationLastTime;
-	private long mCurrentAnimationTime;
+//	private int mDecelerationThreshold;
+//	private int mTranslateVelocity;
+//	private int mAlphaVelocity;
+//	private float mAnimatingTranslateVelocity;
+//	private float mAnimationPosition;
+//	private int mAnimatingAlphaVelocity;
+//	private float mAnimationAlpha;
+//	private long mAnimationLastTime;
+//	private long mCurrentAnimationTime;
 	private int mHeight;
 	private Bitmap mTopCache;
 	private Bitmap mPTopCache;
@@ -104,9 +103,9 @@ public class StackLayout extends ViewGroup {
 		mShadePaint.setColor(0x00000000);
 
 		final float density = getResources().getDisplayMetrics().density;
-		mTranslateVelocity = (int) (density * TRANSLATE_VELOCITY + 0.5);
-		mAlphaVelocity = (int) (density * ALPHA_VELOCITY + 0.5);
-		mDecelerationThreshold = (int) (density * DECELERATION_THRESHOLD + 0.5);
+//		mTranslateVelocity = (int) (density * TRANSLATE_VELOCITY + 0.5);
+		//mAlphaVelocity = (int) (density * ALPHA_VELOCITY + 0.5);
+//		mDecelerationThreshold = (int) (density * DECELERATION_THRESHOLD + 0.5);
 
 		setClickable(true);
 	}
@@ -174,11 +173,6 @@ public class StackLayout extends ViewGroup {
 				mAnimating = false;
 			}
 			return;
-		}
-
-		if (DEBUG) {
-			mSingleAnimationTime = SystemClock.uptimeMillis();
-			mSingleAnimationCount = 0;
 		}
 		long now = SystemClock.uptimeMillis();
 		mAlpha = 0;
@@ -449,9 +443,6 @@ public class StackLayout extends ViewGroup {
 		// MLog.d(TAG, "dispatchDraw");
 
 		final long drawingTime = getDrawingTime();
-		if (DEBUG) {
-			mSingleAnimationCount += 1;
-		}
 		if (mTop != null) {
 			if (isAnimating()) {
 				if (mPreviousTop != null) {
@@ -490,9 +481,6 @@ public class StackLayout extends ViewGroup {
 				mPTopCache = null;
 			}
 		}
-		// MLog.d(TAG, "@dispatchDraw drawingTime " +
-		// (SystemClock.uptimeMillis()
-		// - now));
 	}
 
 	@Override

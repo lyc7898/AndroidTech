@@ -67,23 +67,6 @@ public abstract class BaseFragmentActivity extends BaseActivity {
 			args = new Bundle();
 		}
 		BaseFragment topFragment = mContentFragmentStackManager.top();
-		//�ж���ת�Ƿ�������������Ҫ���
-//		if (topFragment != null) {
-//			if (topFragment.getClass().equals(cls)) {
-//				if (!JumpToFragement.isCanGotoNewFragment(BaseFragmentActivity.this, topFragment, args, -1)) {
-//					return;
-//				}
-//			}
-//		}
-//		BaseFragment secondFragment = mContentFragmentStackManager.getSecondFragment();
-//		if (secondFragment != null) {
-//			if (secondFragment.getClass().equals(cls)) {
-//				if (!JumpToFragement.isCanGotoNewFragment(BaseFragmentActivity.this, secondFragment, args, -1)) {
-//					popBackStack();
-//					return;
-//				}
-//			}
-//		}
 		mContentFragmentStackManager.push(cls, args, fields);
 	}
 

@@ -39,8 +39,8 @@ public class HomePageActivity extends BaseFragmentActivity {
 
     private static final String MAIN_FRAGMENT_CONTENT = "main_content";
 
-    private boolean misStartActivityWithAnim;
-    private boolean misStartActivityForResult;
+    //private boolean misStartActivityWithAnim;
+    //private boolean misStartActivityForResult;
     public static final int CONTAINER_ID = R.id.homepage_fragment_detail;
     public static final int DEFAULT_REQUEST_CODE = -1;
     public static final String IS_FINISH_WITH_ANIM = "is_finish_activity_with_anim";
@@ -49,7 +49,7 @@ public class HomePageActivity extends BaseFragmentActivity {
     /**
      * 是否非Activity界面跳转过来
      */
-    public static final String GOTO_FRAGMENT_FROM_TIMESCAPE = "is_com_from_timescape";
+    //public static final String GOTO_FRAGMENT_FROM_TIMESCAPE = "is_com_from_timescape";
     /**
      * 需要跳转到的fragment
      */
@@ -111,10 +111,6 @@ public class HomePageActivity extends BaseFragmentActivity {
         intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_FRAGMENT_ARGS, args);
         intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_ISSTARTVITHANIM, isStartActivityWithAnim);
         intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_IS_ACTIVITY_FORRESULT, isStartActivityForResult);
-        boolean isComFromActivity = args.getBoolean(GOTO_FRAGMENT_FROM_TIMESCAPE, false);
-        if (isComFromActivity) {
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        }
         boolean isFromFriendStream = args.getBoolean("is_from_friendStream", false);
         if (isFromFriendStream) {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -259,49 +255,9 @@ public class HomePageActivity extends BaseFragmentActivity {
         setContentView(R.layout.activity_homepage);
         mMainFragmentContainer = (StackLayout) findViewById(R.id.homepage_fragment_detail);
         makeNewContentFragmentStackManager(CONTAINER_ID, MAIN_FRAGMENT_CONTENT, mMainFragmentContainer);
-        Intent intent = getIntent();
-        misStartActivityWithAnim = intent.getBooleanExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_ISSTARTVITHANIM, false);
-        misStartActivityForResult = intent.getBooleanExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_IS_ACTIVITY_FORRESULT, false);
-        if (misStartActivityForResult) {
-            setResult(Activity.RESULT_CANCELED);
-        }
         Bundle data = new Bundle();
         data.putInt(APP_INDEX_KEY, mViewIndex);
         addSecondFragment(HomePageFragment.class, data, null);
-
-        String theShowFragmentCls = intent.getStringExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_SHOW_FRAGMENT);
-
-        if (!TextUtils.isEmpty(theShowFragmentCls)) {
-
-            mSelectedIndex = intent.getIntExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_SELECTED_TAB, -1);
-
-            mArgs = intent.getBundleExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_FRAGMENT_ARGS);
-            if (mSelectedIndex != -1 && mArgs != null) {
-                mArgs.putInt(ARG_MAIN_ACTIVITYWITHMINI_KEY_SELECTED_TAB, mSelectedIndex);
-            }
-            try {
-                mFragmentCls = (Class<? extends BaseFragment>) Class.forName(theShowFragmentCls);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            if (mFragmentCls != null) {
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (mSelectedIndex != -1) {
-                            addContent(mSelectedIndex);
-                        } else {
-                            addContent();
-                        }
-                    }
-                }, 500);
-            }
-        }
-
-        // 不在这里先初始化 h5支付透穿会有问题....
-        // APMidasPayAPI.init(this);
-        // APMidasPayAPI.setEnv(APMidasPayAPI.ENV_TEST);
     }
 
     @Override
@@ -342,11 +298,6 @@ public class HomePageActivity extends BaseFragmentActivity {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean finishWhenJump() {
-        return false;
     }
 
     @Override

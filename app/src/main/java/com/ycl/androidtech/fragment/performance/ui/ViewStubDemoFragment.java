@@ -13,7 +13,7 @@ import com.ycl.androidtech.fragment.base.BaseFragment;
 
 /**
  * Created by yuchengluo on 2015/7/30.
- * ViewStubµÄÊ¹ÓÃ
+ * ViewStub
  */
 public class ViewStubDemoFragment extends BaseFragment{
     private Context mContext = null;

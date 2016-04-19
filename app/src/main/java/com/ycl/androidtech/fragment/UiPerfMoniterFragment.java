@@ -18,7 +18,7 @@ import com.ycl.androidtech.monitor.ui.UiPerfMonitor;
 
 /**
  * Created by yuchengluo on 2015/6/29.
- * UI¿¨¶Ù¼à¿ØFramgent
+ * UI Performance Monitor Framgent
  */
 public class UiPerfMoniterFragment extends BaseFragment {
     RelativeLayout mtest = null;

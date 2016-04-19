@@ -16,7 +16,7 @@ import com.ycl.androidtech.fragment.base.BaseFragment;
 
 /**
  * Created by yuchengluo on 2015/7/16.
- * UI性能优化首页Fragment
+ * UI Home page Fragment
  */
 public class UiPerfFragment extends BaseFragment implements View.OnClickListener {
     private Button mBtn_OverDraw,mBtn_Xml,mBtn_ListView,mBtn_Merge;

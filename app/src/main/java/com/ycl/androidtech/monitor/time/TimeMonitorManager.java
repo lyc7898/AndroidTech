@@ -20,14 +20,12 @@ public class TimeMonitorManager {
     public TimeMonitorManager(){
         timeMonitorList = new HashMap<Integer,TimeMonitor>();
     }
-    //初始化某个打点模块
     public void resetTimeMonitor(int id){
         if(timeMonitorList.get(id) != null){
             timeMonitorList.remove(id);
         }
         getTimeMonitor(id);
     }
-    //获取打点器
     public TimeMonitor getTimeMonitor(int id){
         TimeMonitor monitor = timeMonitorList.get(id);
         if(monitor == null){

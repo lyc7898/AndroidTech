@@ -17,7 +17,6 @@ import com.ycl.androidtech.fragment.performance.ui.UiPerfFragment;
 
 /**
  * Created by yuchengluo on 2015/7/16.
- *性能优化Fragment页面首页
  */
 public class PerformanceFragment extends BaseFragment  implements View.OnClickListener {
 

@@ -17,7 +17,7 @@
 package com.ycl.androidtech.fragment.performance.memory;
 
 /**
- * สýพÝิด
+ *
  */
 public class Images {
     public final static String[] imageThumbUrls = new String[] {

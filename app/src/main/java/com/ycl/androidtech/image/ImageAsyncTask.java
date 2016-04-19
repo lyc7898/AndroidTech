@@ -25,13 +25,7 @@ import android.os.Message;
 import android.os.Process;
 
 /**
- * 
- * 
- *   修改原AsyncTask:
- *   SERIAL_EXECUTOR作为默认Executor,使用单线程下载
- *    (Executors.newSingleThreadExecutor) and is the default
- *   THREAD_POOL_EXECUTOR使用DiscardOldestPolicy
- *   增加DUAL_THREAD_EXECUTOR；
+ *
  *
  */
 public abstract class ImageAsyncTask<Params, Progress, Result> {

@@ -23,16 +23,15 @@ import android.util.Log;
 public class ImageCache {
 	private static final String TAG = "TEST";
 
-	//»º´æ»ù±¾ÉèÖÃ
-	private static final int DEFAULT_MEM_CACHE_SIZE = 1024 * 5; // ÄÚ´æ»º´æÄ¬ÈÏ´óĞ¡5MB
+	//
+	private static final int DEFAULT_MEM_CACHE_SIZE = 1024 * 5; //
 	private static final boolean DEFAULT_MEM_CACHE_ENABLED = true;
 
-	//ÄÚ´æ»º´æ
+	//
 	private LruCache<String, BitmapDrawable> mMemoryCache;
 
 	private ImageCacheParams mCacheParams;
 
-	//3.0ºóµÄbitmapÖØÓÃ»úÖÆ
 	private Set<SoftReference<Bitmap>> mReusableBitmaps;
 
 
@@ -42,8 +41,7 @@ public class ImageCache {
 		public boolean memoryCacheEnabled = DEFAULT_MEM_CACHE_ENABLED;
 
 		/***
-		 * ÊÖ¶¯ÉèÖÃÄÚ´æ»º´æ´óĞ¡
-		 * @param percent »º´æ´óĞ¡Õ¼×î´ó¿ÉÓÃÄÚ´æµÄ±ÈÀı
+		 *
 		 */
 		public void setMemCacheSizePercent(float percent) {
 			if (percent < 0.01f || percent > 0.8f) {
@@ -89,17 +87,14 @@ public class ImageCache {
 	private static boolean canUseForInBitmap(
 			Bitmap candidate, BitmapFactory.Options targetOptions) {
 
-		//4.4Ö®Ç°µÄ°æ±¾£¬³ß´ç±ØĞëÍêÈ«ÎÇºÏ
 		if (Build.VERSION.SDK_INT < VERSION_CODES.KITKAT) {
 			return candidate.getWidth() == targetOptions.outWidth
                     && candidate.getHeight() == targetOptions.outHeight
                     && targetOptions.inSampleSize == 1;
 		}
-		//4.4°æ±¾£¬¿ÉÒÔÊ¹ÓÃ±È×Ô¼º´óµÄbitmap
 		int width = targetOptions.outWidth / targetOptions.inSampleSize;
 		int height = targetOptions.outHeight / targetOptions.inSampleSize;
 
-		//¸ù¾İÍ¼Æ¬¸ñÊ½£¬¼ÆËã¾ßÌåµÄbitmap´óĞ¡
 		int byteCount = width * height * getBytesPerPixel(candidate.getConfig());
 
 		return byteCount <= candidate.getAllocationByteCount();
@@ -125,7 +120,6 @@ public class ImageCache {
 
 	/**
 	 *
-	 * ·ÅÔÚno UIµÄfragmentÖĞ£¬±£Ö¤ÆÁÄ»Ğı×ªÊ±²»±»»ØÊÕ
 	 * @param fragmentManager
 	 * @param cacheParams
 	 * @return
@@ -149,7 +143,6 @@ public class ImageCache {
     private void init(ImageCacheParams cacheParams) {
     	mCacheParams = cacheParams;
     	if (mCacheParams.memoryCacheEnabled) {
-    		//Android3.0ÒÔÉÏ¿ÉÒÔÖØÓÃbitmapÄÚ´æ£¬½«ÄÚ´æ»º´æÖĞµÄ»ØÊÕÏîÖØÓÃ¡£
     		if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
     			mReusableBitmaps =
                         Collections.synchronizedSet(new HashSet<SoftReference<Bitmap>>());
@@ -161,10 +154,10 @@ public class ImageCache {
 				protected void entryRemoved(boolean evicted, String key,
 						BitmapDrawable oldValue, BitmapDrawable newValue) {
 					if (RecyclingBitmapDrawable.class.isInstance(oldValue)) {
-						//¼õÉÙ»º´æ¼ÆÊı
+						//ï¿½ï¿½ï¿½Ù»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						((RecyclingBitmapDrawable) oldValue).setIsCached(false);
 					} else {
-						//¼ÓÈë´ıÖØÓÃ¼¯ºÏ
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½
 						if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
 							mReusableBitmaps.add(new SoftReference<Bitmap>(oldValue.getBitmap()));
 						}
@@ -181,9 +174,6 @@ public class ImageCache {
     	}
     }
 
-    /**
-     * Çå¿Õ»º´æ
-     */
     public void clearCache() {
     	if (mMemoryCache != null) {
             mMemoryCache.evictAll();
@@ -192,7 +182,6 @@ public class ImageCache {
 
 
     /**
-     * »ñÈ¡bitmap´óĞ¡
      * @param bitmapDrawable
      * @return
      */
@@ -204,15 +193,15 @@ public class ImageCache {
     	if (Build.VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
     		return bitmap.getAllocationByteCount();
     	}
-    	//3.1¼°ÒÔÉÏ
+    	//3.1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     	if (Build.VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB_MR1) {
     		return  bitmap.getByteCount();
     	}
-    	//3.1Ö®Ç°µÄ°æ±¾
+    	//3.1Ö®Ç°ï¿½Ä°æ±¾
     	return bitmap.getRowBytes() * bitmap.getHeight();
     }
 
-    /**»ñÈ¡ÄÚ´æ»º´æÖĞµÄÍ¼Æ¬
+    /**
      * @param url
      * @return
      */
@@ -231,7 +220,6 @@ public class ImageCache {
     }
 
     /**
-     * Í¼Æ¬¼ÓÈëÄÚ´æ»º´æ
      * @param data
      * @param value
      */
@@ -240,9 +228,7 @@ public class ImageCache {
     		return;
     	}
 
-    	//ÏÈ¼ÓÈëÄÚ´æ»º´æ
     	if (mMemoryCache != null) {
-    		//Èç¹ûÊÇRecyclingBitmapDrawable£¬Ôö¼Ó»º´æ¼ÆÊı
     		if (RecyclingBitmapDrawable.class.isInstance(bitmapDrawable)) {
     			((RecyclingBitmapDrawable) bitmapDrawable).setIsCached(true);
     		}
@@ -264,7 +250,6 @@ public class ImageCache {
 	}
 
 	/**
-	 * ºóÌ¨FragmentÓÃÓÚÔÚºáÊúÆÁÇĞ»»Ê±±£´æImageCache¶ÔÏó¡£
 	 *
 	 */
 	public static class RetainFragment extends Fragment {

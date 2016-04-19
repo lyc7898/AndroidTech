@@ -9,12 +9,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by yuchengluo on 2016/4/1.
- * ²ÉÑù»ùÀà£¬Æô¶¯Ò»¸ö²ÉÑùÏß³Ì£¬¾ßÌå²ÉÑùÊı¾İÓÉ¶ÔÓ¦µÄ×ÓÀàÍê³É
  */
 public abstract class BaseSampler {
     private final String TAG = "BaseSampler";
     private Handler mControlHandler = null;
-    private int intervalTime = 50; //ms²ÉÑù¼ä¸ô
+    private int intervalTime = 50; //msï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private AtomicBoolean mIsSampling = new AtomicBoolean(false);
     public BaseSampler(){
         GLog.d(TAG,"Init BaseSampler");
@@ -34,7 +33,6 @@ public abstract class BaseSampler {
             mIsSampling.set(false);
         }
     }
-    //´´½¨Ò»¸öHandlerThread,¶¨Ê±²ÉÑù
     private Handler getmControlHandler(){
         if(null == mControlHandler){
             HandlerThread mHT = new HandlerThread("SamplerThread");
@@ -43,7 +41,7 @@ public abstract class BaseSampler {
         }
         return mControlHandler;
     }
-    abstract void doSample();//²ÉÑù³éÏó·½·¨
+    abstract void doSample();
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {

@@ -6,7 +6,7 @@ import com.ycl.androidtech.utils.GLog;
 
 /**
  * Created by yuchengluo on 2016/3/31.
- * 通过Loop
+ * hook loop
  */
 public class LogPrinter implements Printer, UiPerfMonitorConfig {
     private final String TAG = "LogPrinter";
@@ -30,7 +30,6 @@ public class LogPrinter implements Printer, UiPerfMonitorConfig {
         }
     }
 
-    //根据需要可以定义更多级别
     private void execuTime(String loginfo, long starttime,long endtime) {
         int level = 0;
         long time = endtime - starttime;

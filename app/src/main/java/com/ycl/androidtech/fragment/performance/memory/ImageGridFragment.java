@@ -34,7 +34,7 @@ public class ImageGridFragment extends BaseFragment {
 
         ImageCache.ImageCacheParams cacheParams = new ImageCache.ImageCacheParams();
 
-        //内存缓存大小为应用可用内存的1/4
+        //
         cacheParams.setMemCacheSizePercent(0.25f);
 
         mImageWorker.initImageCache(getActivity().getSupportFragmentManager(), cacheParams);
@@ -153,7 +153,7 @@ public class ImageGridFragment extends BaseFragment {
             }
 
 //			imageView = (RecyclingImageView) convertView.findViewById(R.id.img);
-            //参数：url,imageview
+            //锟斤拷锟斤拷锟斤拷url,imageview
             mImageWorker.loadImage(Images.imageThumbUrls[position], imageView);
 
             return convertView;

@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 
 /**
  * Created by yuchengluo on 2015/4/5.
- * 写日志线程
+ * 写锟斤拷志锟竭筹拷
  */
 public class LogWriteThread implements UiPerfMonitorConfig{
     private Handler mWriteHandler = null;
@@ -69,21 +69,15 @@ public class LogWriteThread implements UiPerfMonitorConfig{
         }
     }
     /**
-     * 追加内容：使用RandomAccessFile
      *
      * @param fileName
-     *            文件名
      * @param content
-     *            追加的内容
      */
     public static void writeLog4SameFile(String fileName, String content) {
         RandomAccessFile randomFile = null;
         try {
-            // 打开一个随机访问文件流，按读写方式
             randomFile = new RandomAccessFile(fileName, "rw");
-            // 文件长度，字节数
             long fileLength = randomFile.length();
-            // 将写文件指针移到文件尾。
             randomFile.seek(fileLength);
             randomFile.writeBytes(content);
         } catch (IOException e) {
@@ -102,7 +96,7 @@ public class LogWriteThread implements UiPerfMonitorConfig{
         getmControlHandler().post(new Runnable() {
             @Override
             public void run() {
-                //TODO 上传到服务器
+                //TODO send to server
             }
         });
     }
