@@ -11,7 +11,7 @@ import java.util.HashMap;
 /**
  * Created by yuchengluo on 2015/6/26.
  */
-public interface IContentFragmentStackManager {
+public interface IFragmentStackManager {
     void push(Class<? extends BaseFragment> cls, Bundle args, HashMap<String, Object> hashMap);
 
     boolean pop(int requestCode, int resultCode, Intent data);

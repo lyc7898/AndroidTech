@@ -146,23 +146,23 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
                     setSelectedTab(position);
                 }
                 BaseFragment f = mFragments[position];
-                OnShowListener onShowListener = f.getOnShowListener();
-                if (onShowListener != null) {
-                    if (onShowListener.isReShow()) {
-                        onShowListener.onShowFromNet();
-                    } else if (!onShowListener.isOnShow()) {
-                        onShowListener.onShowFromLocal();
-                    }
-                }
-                for (int i = 0; i < mFragments.length; i++) {
-                    if (i != position) {
-                        OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
-                        if (onShowListener1 != null) {
-                            onShowListener1.onFragmentUnShow();
-                        }
-
-                    }
-                }
+//                OnShowListener onShowListener = f.getOnShowListener();
+//                if (onShowListener != null) {
+//                    if (onShowListener.isReShow()) {
+//                        onShowListener.onShowFromNet();
+//                    } else if (!onShowListener.isOnShow()) {
+//                        onShowListener.onShowFromLocal();
+//                    }
+//                }
+//                for (int i = 0; i < mFragments.length; i++) {
+//                    if (i != position) {
+//                        OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
+//                        if (onShowListener1 != null) {
+//                            onShowListener1.onFragmentUnShow();
+//                        }
+//
+//                    }
+//                }
                 if (position == 0) {
                     mPerfNewFlag.setVisibility(View.GONE);
                 } else if (position == 2) {
@@ -258,23 +258,23 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
             return;
         }
 
-        OnShowListener onShowListener = mFragments[mViewIndex].getOnShowListener();
-        if (onShowListener != null) {
-            if (onShowListener.isReShow()) {
-                onShowListener.onShowFromNet();
-            } else if (!onShowListener.isOnShow()) {
-                onShowListener.onShowFromLocal();
-            }
-        }
-        for (int i = 0; i < mFragments.length; i++) {
-            if (i != mViewIndex) {
-                OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
-                if (onShowListener1 != null) {
-                    onShowListener1.onFragmentUnShow();
-                }
-
-            }
-        }
+//        OnShowListener onShowListener = mFragments[mViewIndex].getOnShowListener();
+//        if (onShowListener != null) {
+//            if (onShowListener.isReShow()) {
+//                onShowListener.onShowFromNet();
+//            } else if (!onShowListener.isOnShow()) {
+//                onShowListener.onShowFromLocal();
+//            }
+//        }
+//        for (int i = 0; i < mFragments.length; i++) {
+//            if (i != mViewIndex) {
+//                OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
+//                if (onShowListener1 != null) {
+//                    onShowListener1.onFragmentUnShow();
+//                }
+//
+//            }
+//        }
 
         // 调用包含的fragment的对应生命周期
         for (Fragment f : mFragments) {
@@ -305,10 +305,10 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
     @Override
     protected void pause() {
         for (BaseFragment f : mFragments) {
-            OnShowListener onShowListener = f.getOnShowListener();
-            if (onShowListener != null) {
-                onShowListener.onFragmentUnShow();
-            }
+//            OnShowListener onShowListener = f.getOnShowListener();
+//            if (onShowListener != null) {
+//                onShowListener.onFragmentUnShow();
+//            }
             if (f.isAdded()) {
                 f.onPause();
             }
@@ -413,25 +413,25 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
             setSelectedTab(mViewIndex);
             mPagerDetail.setCurrentItem(mViewIndex);
         }
-        if (mViewIndex == 0 && mFragments != null && mFragments.length > 0) {
-            OnShowListener onShowListener = mFragments[mViewIndex].getOnShowListener();
-            if (onShowListener != null) {
-                if (onShowListener.isReShow()) {
-                    onShowListener.onShowFromNet();
-                } else if (!onShowListener.isOnShow()) {
-                    onShowListener.onShowFromLocal();
-                }
-            }
-            for (int i = 0; i < mFragments.length; i++) {
-                if (i != mViewIndex) {
-                    if (mFragments[i] != null) {
-                        OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
-                        if (onShowListener1 != null) {
-                            onShowListener1.onFragmentUnShow();
-                        }
-                    }
-                }
-            }
-        }
+//        if (mViewIndex == 0 && mFragments != null && mFragments.length > 0) {
+//            OnShowListener onShowListener = mFragments[mViewIndex].getOnShowListener();
+//            if (onShowListener != null) {
+//                if (onShowListener.isReShow()) {
+//                    onShowListener.onShowFromNet();
+//                } else if (!onShowListener.isOnShow()) {
+//                    onShowListener.onShowFromLocal();
+//                }
+//            }
+//            for (int i = 0; i < mFragments.length; i++) {
+//                if (i != mViewIndex) {
+//                    if (mFragments[i] != null) {
+//                        OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
+//                        if (onShowListener1 != null) {
+//                            onShowListener1.onFragmentUnShow();
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 }

@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <Button
-        android:layout_marginTop="50dip"
+        android:id="@+id/btn_ui_perf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打造流畅的UI"
-        android:id="@+id/btn_ui_perf" />
+        android:layout_marginTop="50dip"
+        android:text="打造流畅的UI" />
+
     <Button
-        android:layout_marginTop="50dip"
+        android:id="@+id/btn_men_perf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="图片引擎案例"
-        android:id="@+id/btn_men_perf" />
+        android:layout_marginTop="50dip"
+        android:text="图片引擎案例" />
+
     <Button
-        android:layout_marginTop="50dip"
+        android:id="@+id/btn_bitmap_men"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bitmap内存优化"
-        android:id="@+id/btn_bitmap_men" />
+        android:layout_marginTop="50dip"
+        android:text="Bitmap内存优化" />
 </LinearLayout>

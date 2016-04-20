@@ -26,228 +26,12 @@ import java.util.HashMap;
 public class HomePageActivity extends BaseFragmentActivity {
 
     private final static String TAG = "MusicMainWithMiniBarActivity";
-    public final static String IS_SHOW_PUSH_DIALOG = "is_show_dialog";
-    public final static String PUSH_DIALOG_TITLE = "dialog_title";
-    public final static String PUSH_DIALOG_MSG = "dialog_message";
     private int mFocusedTextColor, mTextColor;
-
-    private boolean isShowPushDialog = false;
-    private String pushDialogTitle;
-    private String pushDialogMessage;
-
     private StackLayout mMainFragmentContainer;
-
     private static final String MAIN_FRAGMENT_CONTENT = "main_content";
-
-    //private boolean misStartActivityWithAnim;
-    //private boolean misStartActivityForResult;
     public static final int CONTAINER_ID = R.id.homepage_fragment_detail;
-    public static final int DEFAULT_REQUEST_CODE = -1;
-    public static final String IS_FINISH_WITH_ANIM = "is_finish_activity_with_anim";
     private int mViewIndex = TAB_VIEW_00;
 
-    /**
-     * 是否非Activity界面跳转过来
-     */
-    //public static final String GOTO_FRAGMENT_FROM_TIMESCAPE = "is_com_from_timescape";
-    /**
-     * 需要跳转到的fragment
-     */
-    public static final String ARG_MAIN_ACTIVITYWITHMINI_KEY_SHOW_FRAGMENT = "the_show_fragment";
-    /**
-     * TAB 定位的POS
-     */
-    public static final String ARG_MAIN_ACTIVITYWITHMINI_KEY_SELECTED_TAB = "the_selected_tab";
-    /**
-     * 需要跳转到Fragment中的ARG
-     */
-    public static final String ARG_MAIN_ACTIVITYWITHMINI_KEY_FRAGMENT_ARGS = "the_fragment_args";
-    /**
-     * 是否需要动画
-     */
-    public static final String ARG_MAIN_ACTIVITYWITHMINI_KEY_ISSTARTVITHANIM = "is_start_activity_with_anim";
-    /**
-     * 是否需要Result For back
-     */
-    public static final String ARG_MAIN_ACTIVITYWITHMINI_KEY_IS_ACTIVITY_FORRESULT = "is_start_activity_forresult";
-
-    /**
-     * 有参数，需要给Fragment添加Argment，有tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param fields                   fragment构造函数有参数的话放在这里面，对Fragment的字段进行直接设置。
-     * @param args                     Fragment要得到的Argments。
-     * @param selectedIndex            goto the tab of selectedIndex
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-
-    public static void show(Context context, final Class<? extends BaseFragment> cls, HashMap<String, Object> fields,
-                            Bundle args, int selectedIndex, boolean isStartActivityWithAnim, boolean isStartActivityForResult,
-                            int requestCode) {
-        fragmentFields = fields;
-
-        // 如果这个MusicMainWithMiniBarActivity已经存在，那么就不在startActivity
-        if (context != null && context instanceof HomePageActivity) {
-            HomePageActivity activity = (HomePageActivity) context;
-            activity.addSecondFragment(cls, args, fields);
-            return;
-        }
-        Intent intent = new Intent(context, HomePageActivity.class);
-        String[] temp = cls.toString().split(" ");
-        String theShowFragmentCls = temp[1];
-        intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_SHOW_FRAGMENT, theShowFragmentCls);
-        intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_SELECTED_TAB, selectedIndex);
-        if (null == args) {
-            args = new Bundle();
-        }
-        if (isStartActivityWithAnim) {
-            args.putBoolean(IS_FINISH_WITH_ANIM, isStartActivityWithAnim);
-        }
-        intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_FRAGMENT_ARGS, args);
-        intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_ISSTARTVITHANIM, isStartActivityWithAnim);
-        intent.putExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_IS_ACTIVITY_FORRESULT, isStartActivityForResult);
-        boolean isFromFriendStream = args.getBoolean("is_from_friendStream", false);
-        if (isFromFriendStream) {
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        }
-        if (context != null) {
-            if (isStartActivityForResult) {
-                ((Activity) context).startActivityForResult(intent, requestCode);
-            } else {
-                context.startActivity(intent);
-            }
-        }
-        if (isStartActivityWithAnim) {
-            // ((Activity) context).overridePendingTransition(R.anim.roll_up,
-            // R.anim.still_when_up);
-        }
-    }
-
-    /**
-     * 有参数，需要给Fragment添加Argment，无tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param fields                   fragment构造函数有参数的话放在这里面，对Fragment的字段进行直接设置。
-     * @param args                     Fragment要得到的Argments。
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-    public static void show(Context context, final Class<? extends BaseFragment> cls, HashMap<String, Object> fields,
-                            Bundle args, boolean isStartActivityWithAnim, boolean isStartActivityForResult, int requestCode) {
-        show(context, cls, fields, args, -1, isStartActivityWithAnim, isStartActivityForResult, requestCode);
-    }
-
-    /**
-     * 有参数，不需要给Fragment添加Argment，有tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param fields                   fragment构造函数有参数的话放在这里面，对Fragment的字段进行直接设置。
-     * @param selectedIndex            goto the tab of selectedIndex
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-    public static void show(Context context, final Class<? extends BaseFragment> cls, HashMap<String, Object> fields,
-                            int selectedIndex, boolean isStartActivityWithAnim, boolean isStartActivityForResult, int requestCode) {
-        show(context, cls, fields, null, selectedIndex, isStartActivityWithAnim, isStartActivityForResult, requestCode);
-    }
-
-    /**
-     * 无参数，不需要给Fragment添加Argment，无tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-    public static void show(Context context, final Class<? extends BaseFragment> cls, boolean isStartActivityWithAnim,
-                            boolean isStartActivityForResult, int requestCode) {
-        show(context, cls, null, null, -1, isStartActivityWithAnim, isStartActivityForResult, requestCode);
-    }
-
-    /**
-     * 有参数，不需要给Fragment添加Argment，无tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param fields                   fragment构造函数有参数的话放在这里面，对Fragment的字段进行直接设置。
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-    public static void show(Context context, final Class<? extends BaseFragment> cls, HashMap<String, Object> fields,
-                            boolean isStartActivityWithAnim, boolean isStartActivityForResult, int requestCode) {
-        show(context, cls, fields, null, -1, isStartActivityWithAnim, isStartActivityForResult, requestCode);
-    }
-
-    /**
-     * 无参数，需要给Fragment添加Argment，有tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param args                     Fragment要得到的Argments。
-     * @param selectedIndex            goto the tab of selectedIndex
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-    public static void show(Context context, final Class<? extends BaseFragment> cls, Bundle args, int selectedIndex,
-                            boolean isStartActivityWithAnim, boolean isStartActivityForResult, int requestCode) {
-        show(context, cls, null, args, selectedIndex, isStartActivityWithAnim, isStartActivityForResult, requestCode);
-    }
-
-    /**
-     * 无参数，需要给Fragment添加Argment，无tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param args                     Fragment要得到的Argments。
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-    public static void show(Context context, final Class<? extends BaseFragment> cls, Bundle args,
-                            boolean isStartActivityWithAnim, boolean isStartActivityForResult, int requestCode) {
-        show(context, cls, null, args, -1, isStartActivityWithAnim, isStartActivityForResult, requestCode);
-    }
-
-    /**
-     * 无参数，不需要给Fragment添加Argment，有tab版的fragment显示需要调用这个show方法
-     *
-     * @param context                  用于启动新的activity
-     * @param cls                      你想要创建的Fragment的类型，用于反射。
-     * @param selectedIndex            goto the tab of selectedIndex
-     * @param isStartActivityWithAnim  启动Activity是否用从下到上的动画：true为用，false为不用
-     * @param isStartActivityForResult 启动Activity是否用startActivityForResult的方法：true为用，false为不用
-     * @param requestCode              isStartActivityForResult为true时各自定义后传入的唯一标识，
-     *                                 如果isStartActivityForResult
-     *                                 为false，统一传TerminalIndependenceActivity.DEFAULT_REQUEST_CODE
-     */
-    public static void show(Context context, final Class<? extends BaseFragment> cls, int selectedIndex,
-                            boolean isStartActivityWithAnim, boolean isStartActivityForResult, int requestCode) {
-        show(context, cls, null, null, selectedIndex, isStartActivityWithAnim, isStartActivityForResult, requestCode);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -264,40 +48,6 @@ public class HomePageActivity extends BaseFragmentActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        String theShowFragmentCls = intent.getStringExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_SHOW_FRAGMENT);
-        BaseFragment bf = top();
-        String nowTopShowFragmentCls = null;
-        if (bf != null) {
-            nowTopShowFragmentCls = bf.getClass().toString();
-            String[] temp = nowTopShowFragmentCls.split(" ");
-            nowTopShowFragmentCls = temp[1];
-        }
-
-        mSelectedIndex = intent.getIntExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_SELECTED_TAB, -1);
-
-        mArgs = intent.getBundleExtra(ARG_MAIN_ACTIVITYWITHMINI_KEY_FRAGMENT_ARGS);
-        if (mArgs == null) {
-            mArgs = new Bundle();
-        }
-
-
-        if (!TextUtils.isEmpty(theShowFragmentCls)) {
-            if (mSelectedIndex != -1 && mArgs != null) {
-                mArgs.putInt(ARG_MAIN_ACTIVITYWITHMINI_KEY_SELECTED_TAB, mSelectedIndex);
-            }
-            try {
-                mFragmentCls = (Class<? extends BaseFragment>) Class.forName(theShowFragmentCls);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            if (mFragmentCls != null) {
-                if (mSelectedIndex != -1) {
-                    addContent(mSelectedIndex);
-                } else {
-                    addContent();
-                }
-            }
-        }
     }
 
     @Override
@@ -308,7 +58,6 @@ public class HomePageActivity extends BaseFragmentActivity {
                 if (top != null && top.onKeyDown(keyCode, event)) {
                     return true;
                 }
-                GLog.d(TAG, "zxg@@@@@ onKeyDown size() is:" + size());
                 if (size() > 1) {
                     popBackStack();
                     return true;
@@ -353,31 +102,5 @@ public class HomePageActivity extends BaseFragmentActivity {
     @Override
     public void finish() {
         super.finish();
-    }
-
-    public void cancelSetLoading() {
-    }
-
-    public int getTopbarHeight() {
-        return 48;
-    }
-
-    public View getMainFragmentContainer() {
-        return mMainFragmentContainer;
-    }
-
-
-    public boolean isMainActivity() {
-        return true;
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        GLog.d(TAG, "onSaveInstanceState do nothing");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        GLog.d(TAG, "onRestoreInstanceState do nothing too");
     }
 }

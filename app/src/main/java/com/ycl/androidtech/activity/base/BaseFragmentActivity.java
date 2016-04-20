@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 import com.ycl.androidtech.fragment.base.BaseFragment;
 import com.ycl.androidtech.utils.GLog;
@@ -20,7 +19,7 @@ public abstract class BaseFragmentActivity extends BaseActivity {
 
 	private static final String TAG = "BaseFragmentActivity";
 
-	private ContentFragmentStackManager mContentFragmentStackManager;
+	private FragmentStackManager mFragmentStackManager;
 
 	protected FragmentManager mManager;
 
@@ -58,7 +57,7 @@ public abstract class BaseFragmentActivity extends BaseActivity {
 		setContainerId(id);
 		setContentTag(tag);
 		setStackLayout(layout);
-		mContentFragmentStackManager = new ContentFragmentStackManager(this, mManager, mContainerId, mContentTag,
+		mFragmentStackManager = new FragmentStackManager(this, mManager, mContainerId, mContentTag,
 				mMainFragmentContainer);
 	}
 
@@ -66,49 +65,38 @@ public abstract class BaseFragmentActivity extends BaseActivity {
 		if (args == null) {
 			args = new Bundle();
 		}
-		BaseFragment topFragment = mContentFragmentStackManager.top();
-		mContentFragmentStackManager.push(cls, args, fields);
+		BaseFragment topFragment = mFragmentStackManager.top();
+		mFragmentStackManager.push(cls, args, fields);
 	}
 
 	public void popBackStack(int requestCode, int resultCode, Intent data) {
-		mContentFragmentStackManager.pop(requestCode, resultCode, data);
+		mFragmentStackManager.pop(requestCode, resultCode, data);
 	}
 
 	public void popBackStack() {
-		mContentFragmentStackManager.pop(-100, -100, null);
+		mFragmentStackManager.pop(-100, -100, null);
 	}
 
 	public void clearBackStack() {
-		mContentFragmentStackManager.clear();
+		mFragmentStackManager.clear();
 	}
 
-	/**
-	 * Hide all fragments except the top one in the stack. don't call this
-	 * method.
-	 */
-	public void hideFragments() {
-		FragmentTransaction ft = mManager.beginTransaction();
-		BaseFragment fragment = (BaseFragment) mManager.findFragmentByTag(mContentTag);
-		if (!mContentFragmentStackManager.empty()) {
-			ft.hide(fragment);
-		}
-	}
 
 	public void addContent() {
 		addContent(-1);
 	}
 
 	public BaseFragment top() {
-		return mContentFragmentStackManager.top();
+		return mFragmentStackManager.top();
 	}
 
 	protected int size() {
-		GLog.d(TAG, "zxg@@@@@ mContentFragmentStackManager.size() is:" + mContentFragmentStackManager.size());
-		return mContentFragmentStackManager.size();
+		GLog.d(TAG, "zxg@@@@@ mFragmentStackManager.size() is:" + mFragmentStackManager.size());
+		return mFragmentStackManager.size();
 	}
 
 	public void addContent(int isDefaultTabs) {
-		mContentFragmentStackManager.push(mFragmentCls, mArgs, fragmentFields);
+		mFragmentStackManager.push(mFragmentCls, mArgs, fragmentFields);
 	}
 
 	public BaseFragment getCurrentFragment() {

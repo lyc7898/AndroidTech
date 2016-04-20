@@ -18,14 +18,14 @@ import java.util.HashMap;
 /**
  * Created by yuchengluo on 2015/6/26.
  */
-public class ContentFragmentStackManager implements IContentFragmentStackManager{
+public class FragmentStackManager implements IFragmentStackManager {
     private static final String TAG = "FlipperContentFragmentStack44";
     public static final int STACK_SIZE = 10;
     private StackLayout mFlipperContent;
 
     private ArrayList<BaseFragment> mFragmentStack;
     private int mSize;
-    private int mMax;
+    private final int MAX = 10 ;
     private FragmentManager mManager;
     private BaseFragment mTopFragment;
 
@@ -43,31 +43,14 @@ public class ContentFragmentStackManager implements IContentFragmentStackManager
     private Handler handler = new Handler(Looper.getMainLooper());
 
     /**
-     * 哈哈哈
      *
-     * @param activity
-     *            Activity
-     * @param manager
-     *            FragmentManager
-     */
-    public ContentFragmentStackManager(Activity activity, FragmentManager manager, int contentId,
-                                           String contentName, StackLayout view) {
-        this(10, activity, manager, contentId, contentName, view);
-    }
-
-    /**
-     * 哈哈哈
-     *
-     * @param size
-     *            栈大小
      * @param activity
      *            上下文
      * @param manager
      *            FragmentManager
      */
-    public ContentFragmentStackManager(int size, Activity activity, FragmentManager manager, int contentId,
-                                           String contentName, StackLayout view) {
-        mMax = size;
+    public FragmentStackManager(Activity activity, FragmentManager manager, int contentId,
+                                String contentName, StackLayout view) {
         mFragmentStack = new ArrayList<BaseFragment>(STACK_SIZE);
         mSize = 0;
         mManager = manager;
@@ -230,7 +213,7 @@ public class ContentFragmentStackManager implements IContentFragmentStackManager
     }
 
     public boolean full() {
-        return mSize == mMax;
+        return mSize == MAX;
     }
 
     public int size() {

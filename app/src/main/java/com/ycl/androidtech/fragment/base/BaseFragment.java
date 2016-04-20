@@ -20,14 +20,9 @@ import com.ycl.androidtech.utils.Util4Common;
 /**
  * Created by yuchengluo on 2015/6/26.
  */
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
 
     private static final String TAG = "BaseFragment";
-
-    /**
-     * 这个监听主要是用在有tab的fragment下面对应的每个tab下的framgnet，这个fragment中的onshow去处理加载数据
-     */
-    private OnShowListener onShowListener;
 
     private View mContainerView;// 这个frament的根view
 
@@ -69,23 +64,10 @@ public abstract class BaseFragment extends Fragment{
         if (arg == null) {
             arg = new Bundle();
         }
-        initData(arg);;
+        initData(arg);
+        ;
     }
 
-    public boolean isCurrentFragment() {
-        if (!checkFragmentAvailable()) {
-            return false;
-        }
-
-        if (onShowListener == null) {
-            if (getHostActivity() == null) {
-                return false;
-            }
-            return getHostActivity().getCurrentFragment() == this;
-        } else {
-            return onShowListener.isShowFragment();
-        }
-    }
 
     private BaseFragment mParent = null;
 
@@ -129,13 +111,6 @@ public abstract class BaseFragment extends Fragment{
         }
     }
 
-
-
-    /**
-     * @return
-     * @Discription:IP是否受限
-     */
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -146,7 +121,7 @@ public abstract class BaseFragment extends Fragment{
     }
 
     private void showLog(String log, boolean needCallStack) {
-       GLog.d(TAG, log + " " + getClass().getName() + (needCallStack ? "" : ""));
+        GLog.d(TAG, log + " " + getClass().getName() + (needCallStack ? "" : ""));
     }
 
     @Override
@@ -163,7 +138,7 @@ public abstract class BaseFragment extends Fragment{
         try {
 
             View mTootView = getView();
-            if(mTootView != null){
+            if (mTootView != null) {
                 mTootView.setTag(this);
             }
 
@@ -242,18 +217,6 @@ public abstract class BaseFragment extends Fragment{
 
     @Override
     public final void onDestroyView() {
-        if (mCurrentAttachedActivity != null) {
-            View view = mCurrentAttachedActivity.getWindow().getDecorView();
-            if (view != null && mContainerView != null) {
-                try {
-                    Object viewRootImpl = view.getRootView().getParent();
-                    clearLeakView(viewRootImpl,"mLastScrolledFocus");
-                    clearLeakView(viewRootImpl,"mOldFocusedView");
-                } catch (Throwable e) {
-//                    e.printStackTrace();
-                }
-            }
-        }
         clearView();
         super.onDestroyView();
     }
@@ -265,68 +228,6 @@ public abstract class BaseFragment extends Fragment{
      * @param animation 现在这个参数始终传入是null。
      */
     public abstract void onEnterAnimationEnd(Animation animation);
-
-    public interface OnShowListener {
-        /**
-         * 当tab要显示的时候需要加载数据的时候会调用这个方法，这个方法用来读取网络数据的初始化
-         */
-        public void onShowFromNet();
-
-        /**
-         * 当tab要显示的时候需要加载数据的时候会调用这个方法，这个方法用来读取本地数据的初始化
-         */
-        public void onShowFromLocal();
-
-        /**
-         * 告诉tab是否需要加载数据，比如已经加载过了，这个时候返回true，就不会再次调用onShow了
-         */
-        public boolean isOnShow();
-
-        /**
-         * 告诉tab是否需要重新加载数据，需要就返回true这个时候就会重新调用onShow了
-         */
-        public boolean isReShow();
-
-        /**
-         * 判断当前的tab显示的是不是自己
-         */
-        public boolean isShowFragment();
-
-        /**
-         * 当移动到了其他fragment的时候调用这个方法
-         */
-        public void onFragmentUnShow();
-    }
-
-    public void setOnShowListener(OnShowListener onShowListener) {
-        this.onShowListener = onShowListener;
-    }
-
-    public OnShowListener getOnShowListener() {
-        return onShowListener;
-    }
-
-    private void clearLeakView(Object viewRootImpl, String viewFieldName) {
-        if (viewFieldName == null || TextUtils.isEmpty(viewFieldName)) {
-            return;
-        }
-        //showLog("viewRootImpl : " + viewRootImpl.getClass().getSimpleName(), false);
-        try {
-            Object leakView = Util4Common.getObjectFieldValue(viewRootImpl, viewFieldName);
-            if (leakView != null) {
-                //  showLog(viewFieldName + " : " + leakView.getClass().getSimpleName(), false);
-                boolean hasFind = Util4Common.findView(mContainerView, leakView);
-                // showLog("hasFind = " + hasFind, false);
-                if (hasFind) {
-                    Util4Common.setObjectField(viewRootImpl, viewFieldName, null);
-                    //showLog(viewFieldName + " : has clear leakView success ", false);
-                }
-            }
-        } catch (Throwable e) {
-//            e.printStackTrace();
-            //showLog(viewFieldName + " : has clear leakView fail ", false);
-        }
-    }
 
     @Override
     public void onDestroy() {
@@ -345,26 +246,10 @@ public abstract class BaseFragment extends Fragment{
      */
     public abstract void clear();
 
-    /**
-     * 用这个方法取代 getHostActivity().runOnUiThread(Runnable run)
-     * 因为在fragment下，不能保证自身始终处于一个activity中。
-     * 如果fragment不在activity中，那么会尝试调用getView().post(Runnable run)
-     * 如果fragment的getView()也返回了null，那么这个runnable将不会执行。
-     *
-     * @param run 一个Runnable
-     */
-    public void runOnUiThread(final Runnable run) {
-        if (checkFragmentAvailable()) {
-            getHostActivity().runOnUiThread(run);
-            return;
-        }
-        if (getView() != null) {
-            getView().post(run);
-        }
-    }
     public boolean checkFragmentAvailable() {
         return mCurrentAttachedActivity != null;
     }
+
     /**
      * 这里会传进来一个Bundle对象用来对数据初始化
      */
@@ -382,7 +267,7 @@ public abstract class BaseFragment extends Fragment{
         return null;
     }
 
-    protected  View getRootView(){
+    protected View getRootView() {
         return mContainerView;
     }
 
