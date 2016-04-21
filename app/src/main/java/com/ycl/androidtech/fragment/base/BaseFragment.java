@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 
+import com.ycl.androidtech.GmfApplication;
 import com.ycl.androidtech.activity.base.BaseFragmentActivity;
 import com.ycl.androidtech.utils.GLog;
 import com.ycl.androidtech.utils.Util4Common;
@@ -233,6 +234,7 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         clear();
+        GmfApplication.getRefWatcher().watch(this);
     }
 
     /**

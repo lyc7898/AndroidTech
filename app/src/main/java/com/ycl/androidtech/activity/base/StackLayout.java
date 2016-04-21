@@ -146,11 +146,7 @@ public class StackLayout extends ViewGroup {
             }
             return;
         }
-  //      long now = SystemClock.uptimeMillis();
-//        mAlpha = 0;
-        //mShadePaint.setAlpha(mAlpha);
         mLeft = mWidth;
-
         mAddScroller = new Scroller(getContext(), new LinearInterpolator());
         mAddScroller.startScroll(mLeft, 0, -mWidth, 0, ANIMATION_TIME);
         invalidate();
@@ -166,8 +162,6 @@ public class StackLayout extends ViewGroup {
             if (!mRemoveScroller.isFinished()) {
                 if (mRemoveScroller.computeScrollOffset()) {
                     mLeft = mRemoveScroller.getCurrX();
-//                    mAlpha = (int) (MAX_ALPHA * (1 - 1.0f * mLeft / mWidth));
-//                    mShadePaint.setAlpha(mAlpha);
                     postInvalidate();
                     return;
                 }
@@ -185,8 +179,6 @@ public class StackLayout extends ViewGroup {
             if (!mAddScroller.isFinished()) {
                 if (mAddScroller.computeScrollOffset()) {
                     mLeft = mAddScroller.getCurrX();
-//                    mAlpha = (int) (MAX_ALPHA * (1 - 1.0f * mLeft / mWidth));
-//                    mShadePaint.setAlpha(mAlpha);
                     postInvalidate();
                     return;
                 }
@@ -202,9 +194,7 @@ public class StackLayout extends ViewGroup {
                 }
             }
         }
-
     }
-
     @Override
     public void removeView(View view) {
         GLog.d(TAG, "removeView");
@@ -282,9 +272,6 @@ public class StackLayout extends ViewGroup {
             return;
         }
         prepareContent();
-
-//        mAlpha = MAX_ALPHA;
-//        mShadePaint.setAlpha(mAlpha);
         mLeft = 0;
         long now = SystemClock.uptimeMillis();
         mRemoveScroller = new Scroller(getContext(), new LinearInterpolator());
@@ -306,9 +293,6 @@ public class StackLayout extends ViewGroup {
             mPreviousTop = null;
         }
         mLeft = 0;
-//        mAlpha = 0;
-//        mShadePaint.setAlpha(mAlpha);
-
         if (mOnStackAnimationListener != null) {
             mOnStackAnimationListener.onStackPopAnimationEnd();
         }
@@ -317,7 +301,6 @@ public class StackLayout extends ViewGroup {
 
     @Override
     public void removeAllViews() {
-        // MLog.d(TAG, "@removeAllViews");
         mViewStack.clear();
         mPreviousTop = null;
         mTop = null;
@@ -326,11 +309,8 @@ public class StackLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // MLog.d(TAG, "@onMeasure");
         final int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         final int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-
-        // measure the gl surface for rendering animation
 
         // loop children for measure
         if (mTop != null) {
@@ -346,7 +326,6 @@ public class StackLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        // MLog.d(TAG, "@onLayout");
         mWidth = r - l;
         mHeight = b - t;
 
@@ -362,12 +341,10 @@ public class StackLayout extends ViewGroup {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        GLog.d(TAG, "@dispatchKeyEvent");
-
+        GLog.d(TAG, "dispatchKeyEvent");
         if (isAnimating()) {
             return true;
         }
-
         final View top = mTop;
         if (top != null && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
             return top.dispatchKeyEvent(event);
@@ -375,34 +352,25 @@ public class StackLayout extends ViewGroup {
             return super.dispatchKeyEvent(event);
         }
     }
-
     @Override
     public void setVisibility(int visibility) {
         if (mTop != null) {
             mTop.setVisibility(visibility);
         }
     }
-
     @Override
     protected void dispatchDraw(Canvas canvas) {
-
         // 如果在动画中，绘制一个白色背景就行了，没必要调用super.dispatchDraw(canvas)
-
         if (mTop != null) {
             try {
                 BaseFragment fragment = (BaseFragment) mTop.getTag();
                 GLog.i(TAG, "dispatchDraw mTop = " + fragment.getClass().getName());
             } catch (Throwable e) {
-
             }
-
         }
-
         if (isAnimating()) {
             canvas.drawColor(Color.WHITE);
         }
-        // MLog.d(TAG, "dispatchDraw");
-
         final long drawingTime = getDrawingTime();
         if (mTop != null) {
             if (isAnimating()) {
@@ -446,7 +414,6 @@ public class StackLayout extends ViewGroup {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        // MMLog.d(TAG, "@dispatchTouchEvent");
         if (isAnimating()) {
             return false;
         }
@@ -461,7 +428,6 @@ public class StackLayout extends ViewGroup {
         if (mTop == null) {
             return;
         }
-
         if (mTopCache != null && !mTopCache.isRecycled()) {
             mTopCache.recycle();
             mTopCache = null;
@@ -470,14 +436,12 @@ public class StackLayout extends ViewGroup {
             mPTopCache.recycle();
             mPTopCache = null;
         }
-
         if (mTop != null) {
             if (mTop.getTag() != null && mTop.getTag() instanceof Bitmap) {
                 mTopCache = (Bitmap) mTop.getTag();
                 mTop.setTag(null);
             }
         }
-
         if (mPreviousTop != null) {
             if (mPreviousTop.getTag() != null && mPreviousTop.getTag() instanceof Bitmap) {
                 mPTopCache = (Bitmap) mPreviousTop.getTag();
@@ -488,11 +452,8 @@ public class StackLayout extends ViewGroup {
 
     public interface OnStackAnimationListener {
         public void onStackPushAnimationEnd();
-
         public void onStackPushAnimationStart();
-
         public void onStackPopAnimationEnd();
-
         public void onStackPopAnimationStart();
     }
 }

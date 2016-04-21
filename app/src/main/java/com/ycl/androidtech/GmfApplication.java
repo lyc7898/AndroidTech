@@ -4,16 +4,21 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
+import com.squareup.leakcanary.AndroidExcludedRefs;
+import com.squareup.leakcanary.DisplayLeakService;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import com.ycl.androidtech.database.DBManager;
+import com.ycl.androidtech.monitor.memory.LeakCanaryService;
 import com.ycl.androidtech.monitor.time.TimeMonitorConfig;
 import com.ycl.androidtech.monitor.time.TimeMonitorManager;
-
 /**
  * Created by yuchengluo on 2015/6/25.
  */
 public class GmfApplication extends Application {
 
     private static Context mContext = null;
+    private static RefWatcher mRefWatcher = null;
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -24,8 +29,13 @@ public class GmfApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        mRefWatcher  = LeakCanary.install(this, LeakCanaryService.class, AndroidExcludedRefs.createAppDefaults().build());
+
         InitModule();
         TimeMonitorManager.getInstance().getTimeMonitor(TimeMonitorConfig.TIME_MONITOR_ID_APPLICATION_START).recodingTimeTag("ApplicationCreate");
+    }
+    public static RefWatcher getRefWatcher(){
+        return mRefWatcher;
     }
     @Override
     public void onTerminate() {
@@ -50,6 +60,5 @@ public class GmfApplication extends Application {
 
     private void InitModule(){
         DBManager.InitDB(mContext);
-
     }
 }

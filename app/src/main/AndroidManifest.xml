@@ -42,6 +42,7 @@
             android:name=".activity.ex.LayoutPerActivity"
             android:label="@string/title_activity_layout_per" >
         </activity>
+        <service android:name=".monitor.memory.LeakCanaryService" />
     </application>
 
 </manifest>
