@@ -151,7 +151,6 @@ public class FragmentStackManager implements IFragmentStackManager {
         final BaseFragment _fragment = mFragmentStack.remove(index);
         _fragment.buildDrawCacheBitmap();
         mManager.beginTransaction().remove(_fragment).commitAllowingStateLoss();
-        GLog.d(TAG, "zxg@@@@@ pop fragment is:" + _fragment);
         sync();
         if (mSize == 1) {
 
@@ -198,7 +197,6 @@ public class FragmentStackManager implements IFragmentStackManager {
             mFragmentStack.add(_fragment);
             if (!mActivity.isFinishing())
                 ft.commitAllowingStateLoss();
-            GLog.d(TAG, "zxg@@@@@ push fragment is:" + _fragment);
             sync();
         } catch (IllegalAccessException e) {
             GLog.e(TAG, "--------Caught IllegalAccessException--------");
@@ -217,7 +215,7 @@ public class FragmentStackManager implements IFragmentStackManager {
     }
 
     public int size() {
-        GLog.d(TAG, "zxg@@@@@ size mSize is:" + mSize + " and mFragmentStack.size() is:" + mFragmentStack.size());
+        GLog.d(TAG, "Fragment mSize is:" + mSize + " and mFragmentStack.size() is:" + mFragmentStack.size());
         return mSize;
     }
 
@@ -229,7 +227,6 @@ public class FragmentStackManager implements IFragmentStackManager {
             mTopFragment = mFragmentStack.get(mSize - 1);
             assert mTopFragment == mFragmentStack.get(mSize - 1);
         }
-        GLog.d(TAG, "zxg@@@@@ sync mSize is:" + mSize + " and mFragmentStack.size() is:" + mFragmentStack.size());
         assert mSize == mFragmentStack.size();
     }
 

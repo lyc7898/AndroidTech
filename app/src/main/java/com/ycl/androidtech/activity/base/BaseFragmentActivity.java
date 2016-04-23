@@ -91,7 +91,6 @@ public abstract class BaseFragmentActivity extends BaseActivity {
 	}
 
 	protected int size() {
-		GLog.d(TAG, "zxg@@@@@ mFragmentStackManager.size() is:" + mFragmentStackManager.size());
 		return mFragmentStackManager.size();
 	}
 
