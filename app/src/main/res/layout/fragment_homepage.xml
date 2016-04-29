@@ -120,7 +120,7 @@
             android:src="@drawable/hp_button_right" />
     </LinearLayout>
 
-    <com.ycl.androidtech.fragment.homepage.GmfBaseViewPager
+    <com.android.androidtech.fragment.homepage.GmfBaseViewPager
         android:id="@+id/main_desk_fragment_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

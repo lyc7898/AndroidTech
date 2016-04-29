@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.ycl.androidtech.ui.TopBar
+    <com.android.androidtech.ui.TopBar
         android:id="@+id/lay_out_topbar"
         android:layout_width="fill_parent"
         android:background="@color/black_overlay"

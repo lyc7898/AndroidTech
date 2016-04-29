@@ -9,7 +9,7 @@
         android:layout_gravity="center"
         android:background="@mipmap/ic_launcher"
         android:id="@+id/imageView" />
-    <com.ycl.androidtech.ui.ScrollTextView
+    <com.android.androidtech.ui.ScrollTextView
         android:layout_gravity="center"
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"

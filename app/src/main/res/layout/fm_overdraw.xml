@@ -10,7 +10,7 @@
         layout="@layout/common_top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/topbar_height" />
-    <com.ycl.androidtech.ui.MultiCardsView
+    <com.android.androidtech.ui.MultiCardsView
         android:id="@+id/cardview"
         android:layout_below="@id/topBar"
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
 
-    </com.ycl.androidtech.ui.MultiCardsView>
+    </com.android.androidtech.ui.MultiCardsView>
 
     <LinearLayout
         android:layout_width="wrap_content"

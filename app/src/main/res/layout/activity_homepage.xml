@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.ycl.androidtech.activity.base.StackLayout
+    <com.android.androidtech.activity.base.StackLayout
         android:id="@+id/homepage_fragment_detail"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
