@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.support.v4.app.FragmentManager;
 import android.widget.ImageView;
-
 /***
  *
  * ListView上每个item启动一个AsyncTask去下载图片，AsyncTask在容量为2的线程池上运行。

@@ -18,24 +18,24 @@ import com.android.androidtech.image.ImageCache;
 import com.android.androidtech.image.ImageFetcher;
 import com.android.androidtech.image.ImageWorker;
 import com.android.androidtech.image.RecyclingImageView;
+import com.android.miniimageloader.MiniImageLoader;
 
 public class ImageGridFragment extends BaseFragment {
     private static final String TAG = "ImageGridFragment";
-    private ImageWorker mImageWorker;
+//    private ImageWorker mImageWorker;
     private ImageAdapter mAdapter;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mImageWorker = new ImageFetcher(getActivity(), 50);
+//        mImageWorker = new ImageFetcher(getActivity(), 50);
 
         ImageCache.ImageCacheParams cacheParams = new ImageCache.ImageCacheParams();
 
         //
         cacheParams.setMemCacheSizePercent(0.25f);
 
-        mImageWorker.initImageCache(getActivity().getSupportFragmentManager(), cacheParams);
+//        mImageWorker.initImageCache(getActivity().getSupportFragmentManager(), cacheParams);
     }
 
 
@@ -51,9 +51,11 @@ public class ImageGridFragment extends BaseFragment {
             public void onScrollStateChanged(AbsListView absListView, int scrollState) {
 
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
-                    mImageWorker.setPauseWork(true);
+                    MiniImageLoader.getInstance().setPauseWork(true);
+//                    mImageWorker.setPauseWork(true);
                 } else {
-                    mImageWorker.setPauseWork(false);
+                    MiniImageLoader.getInstance().setPauseWork(false);
+//                    mImageWorker.setPauseWork(false);
                 }
             }
 
@@ -69,7 +71,7 @@ public class ImageGridFragment extends BaseFragment {
     @Override
     protected void resume() {
 
-        mImageWorker.setExitTasksEarly(false);
+//        mImageWorker.setExitTasksEarly(false);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -80,8 +82,8 @@ public class ImageGridFragment extends BaseFragment {
 
     @Override
     protected void pause() {
-        mImageWorker.setPauseWork(false);
-        mImageWorker.setExitTasksEarly(true);
+//        mImageWorker.setPauseWork(false);
+//        mImageWorker.setExitTasksEarly(true);
     }
 
     @Override
@@ -145,14 +147,13 @@ public class ImageGridFragment extends BaseFragment {
 
             if (convertView == null) {
                 convertView = mInflater.inflate(R.layout.list_item, parent, false);
-                imageView = (RecyclingImageView) convertView.findViewById(R.id.img);
+                imageView = (ImageView) convertView.findViewById(R.id.img);
             } else {
-                imageView = (RecyclingImageView) convertView.findViewById(R.id.img);
+                imageView = (ImageView) convertView.findViewById(R.id.img);
             }
+            MiniImageLoader.getInstance().loadImage(Images.imageThumbUrls[position], imageView);
 
-//			imageView = (RecyclingImageView) convertView.findViewById(R.id.img);
-            //������url,imageview
-            mImageWorker.loadImage(Images.imageThumbUrls[position], imageView);
+//            mImageWorker.loadImage(Images.imageThumbUrls[position], imageView);
 
             return convertView;
         }

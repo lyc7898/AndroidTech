@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-	<com.android.androidtech.image.RecyclingImageView
+	<ImageView
 	    android:id="@+id/img"
 	    android:layout_width="60dp"
 	    android:layout_height="60dp"

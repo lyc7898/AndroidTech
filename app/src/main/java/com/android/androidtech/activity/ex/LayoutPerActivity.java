@@ -9,10 +9,13 @@ import android.widget.TextView;
 
 import com.android.androidtech.R;
 import com.android.androidtech.monitor.memory.TestDataModel;
+import com.android.androidtech.utils.GLog;
+import com.android.miniimageloader.MiniImageLoaderConfig;
 
 import java.lang.ref.WeakReference;
 
 public class LayoutPerActivity extends Activity {
+    private final String TAG  = "LayoutPerActivity";
     private NewHandler mHandler = new NewHandler(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
