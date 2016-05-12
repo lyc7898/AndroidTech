@@ -1,4 +1,4 @@
-package com.android.miniimageloader;
+package com.android.miniimageloader.cache;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
@@ -18,7 +18,6 @@ import java.util.Set;
 /**
  * Created by yuchengluo on 2016/4/29.
  */
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class ImageCache {
 
 }

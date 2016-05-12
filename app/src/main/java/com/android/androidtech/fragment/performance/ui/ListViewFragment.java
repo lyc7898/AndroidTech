@@ -36,9 +36,6 @@ public class ListViewFragment extends BaseFragment {
 
         listView = (ListView) view.findViewById(R.id.listView);//实例化ListView
         listView.setAdapter(adapter);//为ListView控件绑定适配器
-        while (!bool){
-            ;
-        }
         return view;
     }
 

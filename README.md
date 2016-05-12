@@ -7,13 +7,12 @@ This is a performance optimization project source code, including optimization o
 (1)base：Fragment基类。  
 (2)homepage:首页。  
 (3)ui: 界面设计的一些DEMO。  
-(4)memery:内存优化的一些DEMO。  
-二.框架类  
-1.简单的图片引擎：com.ycl.androidtech.image  
-2.数据库：databases。
-三.工具类
+(4)memery:内存优化的一些DEMO。
+二.工具
 1.监控工具
 (1)UI卡顿监控 com.ycl.androidtech.monitor.ui。
 (2)内存监控：com.ycl.androidtech.monitor.memory。
 (3)耗时上报工具：com.ycl.androidtech.monitor.time
-
+三.引擎模块
+1.图片引擎：MiniImageLoader.
+2.数据库引擎。

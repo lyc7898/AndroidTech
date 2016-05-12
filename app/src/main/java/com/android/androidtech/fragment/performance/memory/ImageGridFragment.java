@@ -44,7 +44,7 @@ public class ImageGridFragment extends BaseFragment {
     protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.list, container, false);
         ListView listView = (ListView) v.findViewById(R.id.image_list);
-        mAdapter = new ImageAdapter(getActivity());
+        mAdapter = new ImageAdapter(getHostActivity());
         listView.setAdapter(mAdapter);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -119,12 +119,10 @@ public class ImageGridFragment extends BaseFragment {
     }
 
     private class ImageAdapter extends BaseAdapter {
-        private final Context mContext;
         private LayoutInflater mInflater;
 
         public ImageAdapter(Context context) {
-            this.mContext = context;
-            this.mInflater = LayoutInflater.from(mContext);
+            this.mInflater = LayoutInflater.from(context);
         }
 
         @Override

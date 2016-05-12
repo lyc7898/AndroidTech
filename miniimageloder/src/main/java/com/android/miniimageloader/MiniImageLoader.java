@@ -2,14 +2,12 @@ package com.android.miniimageloader;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.util.Log;
-import android.widget.ImageView;
 
+import com.android.miniimageloader.cache.ImageCache;
 import com.android.miniimageloader.config.BitmapConfig;
+import com.android.miniimageloader.utils.BitmapUtil;
 import com.android.miniimageloader.utils.CloseUtil;
-import com.android.miniimageloader.utils.MLog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +45,7 @@ public class MiniImageLoader extends ImageLoader{
             urlConnection.disconnect();
             urlConnection = (HttpURLConnection) url.openConnection();
             in = urlConnection.getInputStream();
-            Bitmap bitmap = decodeSampledBitmapFromStream(in,options );
+            Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromStream(in, options);
             return bitmap;
 
         } catch (final IOException e) {
@@ -61,9 +59,5 @@ public class MiniImageLoader extends ImageLoader{
         return null;
     }
 
-    public Bitmap decodeSampledBitmapFromStream(
-            InputStream is, BitmapFactory.Options options) {
-        MLog.d(TAG,"mSampleSize:" + options.inSampleSize);
-        return BitmapFactory.decodeStream(is, null, options);
-    }
+
 }
