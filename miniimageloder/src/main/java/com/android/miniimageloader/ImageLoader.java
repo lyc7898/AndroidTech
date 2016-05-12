@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.ImageView;
 
+import com.android.miniimageloader.config.BitmapConfig;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -17,11 +19,11 @@ public abstract class ImageLoader {
     private boolean mExitTasksEarly = false;  // 是否提前退出的标志
     protected boolean mPauseWork = false;
     private final Object mPauseWorkLock = new Object();
-
+    public final String TAG = "ImageLoader";
     protected ImageLoader() {
     }
 
-    public void loadImage(String url, ImageView imageView) {
+    public void loadImage(String url, ImageView imageView,BitmapConfig bmConfig) {
         if (url == null) {
             return;
         }
@@ -37,7 +39,7 @@ public abstract class ImageLoader {
         //否则下载
         else  {
 
-            final BitmapLoadTask task = new BitmapLoadTask(url, imageView);
+            final BitmapLoadTask task = new BitmapLoadTask(url, imageView,bmConfig);
 
             task.executeOnExecutor(AsyncTask.DUAL_THREAD_EXECUTOR);
         }
@@ -45,11 +47,13 @@ public abstract class ImageLoader {
     private class BitmapLoadTask extends
             AsyncTask<Void, Void, Bitmap> {
         private String mUrl;
+        private BitmapConfig mBitmapConfig = null;
         private final WeakReference<ImageView> imageViewReference;
 
-        public BitmapLoadTask(String url, ImageView imageView) {
+        public BitmapLoadTask(String url, ImageView imageView,BitmapConfig bmConfig) {
             mUrl = url;
             imageViewReference = new WeakReference<ImageView>(imageView);
+            mBitmapConfig = bmConfig;
         }
 
         @Override
@@ -70,7 +74,7 @@ public abstract class ImageLoader {
 
             if (bitmap == null && !isCancelled()
                     && imageViewReference.get() != null && !mExitTasksEarly) {
-                bitmap = downLoadBitmap(mUrl);
+                bitmap = downLoadBitmap(mUrl,mBitmapConfig);
             }
 
             if (bitmap != null) {
@@ -129,5 +133,5 @@ public abstract class ImageLoader {
      * @param url
      * @return
      */
-    protected abstract Bitmap downLoadBitmap(String url);
+    protected abstract Bitmap downLoadBitmap(String url,BitmapConfig bmConfig);
 }

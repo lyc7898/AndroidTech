@@ -1,4 +1,4 @@
-package com.android.miniimageloader;
+package com.android.miniimageloader.config;
 
 import android.support.annotation.IntDef;
 

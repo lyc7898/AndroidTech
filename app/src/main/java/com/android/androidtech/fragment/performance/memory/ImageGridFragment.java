@@ -19,6 +19,7 @@ import com.android.androidtech.image.ImageFetcher;
 import com.android.androidtech.image.ImageWorker;
 import com.android.androidtech.image.RecyclingImageView;
 import com.android.miniimageloader.MiniImageLoader;
+import com.android.miniimageloader.config.BitmapConfig;
 
 public class ImageGridFragment extends BaseFragment {
     private static final String TAG = "ImageGridFragment";
@@ -151,7 +152,7 @@ public class ImageGridFragment extends BaseFragment {
             } else {
                 imageView = (ImageView) convertView.findViewById(R.id.img);
             }
-            MiniImageLoader.getInstance().loadImage(Images.imageThumbUrls[position], imageView);
+            MiniImageLoader.getInstance().loadImage(Images.imageThumbUrls[position], imageView,new BitmapConfig(50,50));
 
 //            mImageWorker.loadImage(Images.imageThumbUrls[position], imageView);
 

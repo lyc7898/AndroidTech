@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.android.androidtech.R;
 import com.android.androidtech.monitor.memory.TestDataModel;
-import com.android.androidtech.utils.GLog;
-import com.android.miniimageloader.MiniImageLoaderConfig;
 
 import java.lang.ref.WeakReference;
 

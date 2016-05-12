@@ -7,7 +7,9 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.android.miniimageloader.config.BitmapConfig;
 import com.android.miniimageloader.utils.CloseUtil;
+import com.android.miniimageloader.utils.MLog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +34,7 @@ public class MiniImageLoader extends ImageLoader{
         mImageCache = new ImageCache();
     }
 
-    public Bitmap downLoadBitmap(String urlString) {
+    public Bitmap downLoadBitmap(String urlString,BitmapConfig bmConfig) {
         HttpURLConnection urlConnection = null;
         InputStream in = null;
 
@@ -40,7 +42,12 @@ public class MiniImageLoader extends ImageLoader{
             final URL url = new URL(urlString);
             urlConnection = (HttpURLConnection) url.openConnection();
             in = urlConnection.getInputStream();
-            Bitmap bitmap = decodeSampledBitmapFromStream(in, null);
+            final BitmapFactory.Options options = bmConfig.getBitmapOptions(in);
+            in.close();
+            urlConnection.disconnect();
+            urlConnection = (HttpURLConnection) url.openConnection();
+            in = urlConnection.getInputStream();
+            Bitmap bitmap = decodeSampledBitmapFromStream(in,options );
             return bitmap;
 
         } catch (final IOException e) {
@@ -56,6 +63,7 @@ public class MiniImageLoader extends ImageLoader{
 
     public Bitmap decodeSampledBitmapFromStream(
             InputStream is, BitmapFactory.Options options) {
+        MLog.d(TAG,"mSampleSize:" + options.inSampleSize);
         return BitmapFactory.decodeStream(is, null, options);
     }
 }
