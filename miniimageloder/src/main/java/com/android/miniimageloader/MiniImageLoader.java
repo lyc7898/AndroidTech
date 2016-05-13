@@ -31,7 +31,7 @@ public class MiniImageLoader extends ImageLoader{
     public MiniImageLoader(){
         mImageCache = new ImageCache();
     }
-
+    @Override
     public Bitmap downLoadBitmap(String urlString,BitmapConfig bmConfig) {
         HttpURLConnection urlConnection = null;
         InputStream in = null;
@@ -57,6 +57,14 @@ public class MiniImageLoader extends ImageLoader{
             CloseUtil.closeQuietly(in);
         }
         return null;
+    }
+
+    @Override
+    protected ImageCache getmImageCache() {
+        if(null == mImageCache){
+            mImageCache = new ImageCache();
+        }
+        return mImageCache;
     }
 
 

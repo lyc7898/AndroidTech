@@ -5,9 +5,11 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Build;
 import android.widget.ImageView;
 
+import com.android.miniimageloader.cache.ImageCache;
 import com.android.miniimageloader.config.BitmapConfig;
 
 import java.lang.ref.WeakReference;
@@ -20,37 +22,38 @@ public abstract class ImageLoader {
     protected boolean mPauseWork = false;
     private final Object mPauseWorkLock = new Object();
     public final String TAG = "ImageLoader";
+
     protected ImageLoader() {
+        Init();
     }
 
-    public void loadImage(String url, ImageView imageView,BitmapConfig bmConfig) {
+    private void Init() {
+    }
+
+    public void loadImage(String url, ImageView imageView, BitmapConfig bmConfig) {
         if (url == null) {
             return;
         }
-
-        BitmapDrawable bitmapDrawable = null;
-//        if (mImageCache != null) {
-//            bitmapDrawable = mImageCache.getBitmapFromMemCache(url);
-//        }
-
-        if (bitmapDrawable != null) {
-            imageView.setImageDrawable(bitmapDrawable);
+        Bitmap bitmap =  getmImageCache().getBitmap(url);;
+        if (bitmap != null) {
+            setImageBitmap(imageView,bitmap);
         }
-        //否则下载
-        else  {
+        //否则走加载
+        else {
 
-            final BitmapLoadTask task = new BitmapLoadTask(url, imageView,bmConfig);
+            final BitmapLoadTask task = new BitmapLoadTask(url, imageView, bmConfig);
 
             task.executeOnExecutor(AsyncTask.DUAL_THREAD_EXECUTOR);
         }
     }
+
     private class BitmapLoadTask extends
             AsyncTask<Void, Void, Bitmap> {
         private String mUrl;
         private BitmapConfig mBitmapConfig = null;
         private final WeakReference<ImageView> imageViewReference;
 
-        public BitmapLoadTask(String url, ImageView imageView,BitmapConfig bmConfig) {
+        public BitmapLoadTask(String url, ImageView imageView, BitmapConfig bmConfig) {
             mUrl = url;
             imageViewReference = new WeakReference<ImageView>(imageView);
             mBitmapConfig = bmConfig;
@@ -58,10 +61,7 @@ public abstract class ImageLoader {
 
         @Override
         protected Bitmap doInBackground(Void... params) {
-
             Bitmap bitmap = null;
-            BitmapDrawable drawable = null;
-
             synchronized (mPauseWorkLock) {
                 while (mPauseWork && !isCancelled()) {
                     try {
@@ -71,14 +71,12 @@ public abstract class ImageLoader {
                     }
                 }
             }
-
             if (bitmap == null && !isCancelled()
                     && imageViewReference.get() != null && !mExitTasksEarly) {
-                bitmap = downLoadBitmap(mUrl,mBitmapConfig);
+                bitmap = downLoadBitmap(mUrl, mBitmapConfig);
             }
-
             if (bitmap != null) {
-                //add 2 cache TODO
+                getmImageCache().addToCache(mUrl, bitmap);
             }
 
             return bitmap;
@@ -105,7 +103,7 @@ public abstract class ImageLoader {
         }
     }
 
-    /***
+    /**
      * @param imageView
      * @param drawable
      */
@@ -127,11 +125,13 @@ public abstract class ImageLoader {
         setPauseWork(false);
     }
 
-    /***
+    /**
      * 下载
      *
      * @param url
      * @return
      */
-    protected abstract Bitmap downLoadBitmap(String url,BitmapConfig bmConfig);
+    protected abstract Bitmap downLoadBitmap(String url, BitmapConfig bmConfig);
+
+    protected abstract ImageCache getmImageCache();
 }
