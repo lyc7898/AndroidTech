@@ -73,6 +73,11 @@ public abstract class ImageLoader {
             }
             if (bitmap == null && !isCancelled()
                     && imageViewReference.get() != null && !mExitTasksEarly) {
+                bitmap = getmImageCache().getBitmapFromDisk(mUrl, mBitmapConfig);
+            }
+
+            if (bitmap == null && !isCancelled()
+                    && imageViewReference.get() != null && !mExitTasksEarly) {
                 bitmap = downLoadBitmap(mUrl, mBitmapConfig);
             }
             if (bitmap != null) {

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
+import com.android.miniimageloader.MiniImageLoader;
 import com.squareup.leakcanary.AndroidExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -23,6 +24,9 @@ public class GmfApplication extends Application {
         super.attachBaseContext(base);
         mContext = this;
         TimeMonitorManager.getInstance().resetTimeMonitor(TimeMonitorConfig.TIME_MONITOR_ID_APPLICATION_START);
+        //初始化图片引擎
+        MiniImageLoader.progrem(mContext);
+        MiniImageLoader.getInstance();
     }
     public static  Context getmContext(){
         return mContext;

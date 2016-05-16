@@ -1,5 +1,6 @@
 package com.android.miniimageloader;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -20,6 +21,7 @@ import java.net.URL;
 public class MiniImageLoader extends ImageLoader{
     private volatile static MiniImageLoader miniImageLoader = null;
     private ImageCache mImageCache = null;
+    static private Context mContext = null;
     public static MiniImageLoader getInstance(){
         if(null == miniImageLoader){
             synchronized (MiniImageLoader.class){
@@ -28,8 +30,11 @@ public class MiniImageLoader extends ImageLoader{
         }
         return miniImageLoader;
     }
+    public static void progrem(Context context){
+        mContext = context;
+    }
     public MiniImageLoader(){
-        mImageCache = new ImageCache();
+        mImageCache = new ImageCache(mContext);
     }
     @Override
     public Bitmap downLoadBitmap(String urlString,BitmapConfig bmConfig) {
@@ -40,6 +45,7 @@ public class MiniImageLoader extends ImageLoader{
             final URL url = new URL(urlString);
             urlConnection = (HttpURLConnection) url.openConnection();
             in = urlConnection.getInputStream();
+            getmImageCache().saveToDisk(urlString,in);
             final BitmapFactory.Options options = bmConfig.getBitmapOptions(in);
             in.close();
             urlConnection.disconnect();
@@ -62,7 +68,7 @@ public class MiniImageLoader extends ImageLoader{
     @Override
     protected ImageCache getmImageCache() {
         if(null == mImageCache){
-            mImageCache = new ImageCache();
+            mImageCache = new ImageCache(mContext);
         }
         return mImageCache;
     }
