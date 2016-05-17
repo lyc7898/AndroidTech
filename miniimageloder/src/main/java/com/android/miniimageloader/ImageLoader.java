@@ -1,8 +1,10 @@
 package com.android.miniimageloader;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import com.android.miniimageloader.cache.ImageCache;
 import com.android.miniimageloader.config.BitmapConfig;
 
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 /**

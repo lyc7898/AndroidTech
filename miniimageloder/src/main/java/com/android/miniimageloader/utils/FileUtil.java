@@ -9,18 +9,6 @@ import java.io.OutputStream;
  * Created by yuchengluo on 2016/5/16.
  */
 public class FileUtil {
-    public static boolean witeToOutputStream(InputStream in, OutputStream outputStream) {
-        int ch;
-        try {
-            while ((ch = in.read()) != -1) {
-                outputStream.write(ch);
-            }
-        } catch (IOException e) {
-            MLog.e("FileUtil","witeToOutputStream Error:" + e.getMessage());
-            return false;
-        }
-        return true;
-    }
     public static boolean copyStream(InputStream input, OutputStream output)
     {
         byte[] buffer = new byte[1024]; // Adjust if you want

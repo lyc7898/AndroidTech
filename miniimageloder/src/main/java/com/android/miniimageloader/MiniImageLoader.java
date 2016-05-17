@@ -51,7 +51,7 @@ public class MiniImageLoader extends ImageLoader{
             urlConnection.disconnect();
             urlConnection = (HttpURLConnection) url.openConnection();
             in = urlConnection.getInputStream();
-            Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromStream(in, options);
+            Bitmap bitmap = BitmapUtil.decodeSampledBitmapFromStream(in, options,getmImageCache());
             return bitmap;
 
         } catch (final IOException e) {

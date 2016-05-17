@@ -44,4 +44,7 @@ public class ImageCache {
     public void saveToDisk(String url,InputStream is){
         mDiskCache.saveToDisk(url,is);
     }
+    public Bitmap getBitmapFromReusableSet(BitmapFactory.Options options){
+        return mMemoryCache.getBitmapFromReusableSet(options);
+    }
 }

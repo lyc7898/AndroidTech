@@ -53,10 +53,8 @@ public class ImageGridFragment extends BaseFragment {
 
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
                     MiniImageLoader.getInstance().setPauseWork(true);
-//                    mImageWorker.setPauseWork(true);
                 } else {
                     MiniImageLoader.getInstance().setPauseWork(false);
-//                    mImageWorker.setPauseWork(false);
                 }
             }
 
@@ -71,8 +69,6 @@ public class ImageGridFragment extends BaseFragment {
 
     @Override
     protected void resume() {
-
-//        mImageWorker.setExitTasksEarly(false);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -83,8 +79,6 @@ public class ImageGridFragment extends BaseFragment {
 
     @Override
     protected void pause() {
-//        mImageWorker.setPauseWork(false);
-//        mImageWorker.setExitTasksEarly(true);
     }
 
     @Override
@@ -151,9 +145,6 @@ public class ImageGridFragment extends BaseFragment {
                 imageView = (ImageView) convertView.findViewById(R.id.img);
             }
             MiniImageLoader.getInstance().loadImage(Images.imageThumbUrls[position], imageView,new BitmapConfig(50,50));
-
-//            mImageWorker.loadImage(Images.imageThumbUrls[position], imageView);
-
             return convertView;
         }
     }
