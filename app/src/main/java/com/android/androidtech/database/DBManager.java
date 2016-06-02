@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.android.androidtech.database.tables.ContactInfoTable;
 import com.android.androidtech.database.tables.DBConfig;
-import com.android.androidtech.database.tables.UserInfoTable;
 import com.android.androidtech.utils.GLog;
 
 
@@ -123,8 +123,10 @@ public class DBManager implements DBConfig {
         }
 
         private void createTable(SQLiteDatabase db) {
-            db.execSQL("DROP TABLE IF EXISTS  " + UserInfoTable.USER_INFO_TABLE);
-            db.execSQL(UserInfoTable.TABLE_CREATE);
+            //创建表
+            db.execSQL("DROP TABLE IF EXISTS  " + ContactInfoTable.CONTACT_INFO_TABLE);
+            //创建表中具体的字段
+            db.execSQL(ContactInfoTable.TABLE_CREATE);
         }
     }
 }

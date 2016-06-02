@@ -27,6 +27,7 @@ public class GmfApplication extends Application {
         //初始化图片引擎
         MiniImageLoader.progrem(mContext);
         MiniImageLoader.getInstance();
+        GmfSharedPreferences.progrem(mContext);
     }
     public static  Context getmContext(){
         return mContext;

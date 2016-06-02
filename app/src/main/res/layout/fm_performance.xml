@@ -25,4 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dip"
         android:text="Bitmap内存优化" />
+    <Button
+        android:id="@+id/btn_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dip"
+        android:text="联系人" />
 </LinearLayout>

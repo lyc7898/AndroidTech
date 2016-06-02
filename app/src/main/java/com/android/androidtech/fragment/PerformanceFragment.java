@@ -20,7 +20,7 @@ import com.android.androidtech.fragment.performance.ui.UiPerfFragment;
  */
 public class PerformanceFragment extends BaseFragment  implements View.OnClickListener {
 
-    private Button mBtn_UiPerf,mBtn_MenPerf ,mBtn_BitMap= null;
+    private Button mBtn_UiPerf,mBtn_MenPerf ,mBtn_BitMap,mBtn_Contact= null;
     private Context mContext = null;
     @Override
     protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +34,9 @@ public class PerformanceFragment extends BaseFragment  implements View.OnClickLi
 
         mBtn_BitMap = (Button)view.findViewById(R.id.btn_bitmap_men);
         mBtn_BitMap.setOnClickListener(this);
+
+        mBtn_Contact = (Button)view.findViewById(R.id.btn_contact);
+        mBtn_Contact.setOnClickListener(this);
         return view;
     }
 
@@ -88,6 +91,9 @@ public class PerformanceFragment extends BaseFragment  implements View.OnClickLi
        }else if(v.getId() == mBtn_BitMap.getId()){
            Bundle mBundle = new Bundle();
            ((HomePageActivity) mContext).addSecondFragment(BitmapMemeryFragment.class, mBundle, null);
+       }else if(v.getId() == mBtn_Contact.getId()){
+           Bundle mBundle = new Bundle();
+           ((HomePageActivity) mContext).addSecondFragment(ContactFragment.class, mBundle, null);
        }
     }
 }

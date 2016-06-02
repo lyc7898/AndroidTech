@@ -85,7 +85,7 @@ public abstract class BaseTable {
     * */
     public abstract String[] getAllKey();
     /**
-     * @author kenzhang 查询表中元素数量,比原有的cursor.getCount()应该更高效
+     * @author kenzhang 查询表中元素数量,比原有的cursor.getCount()更高效
      * @return
      */
     public int getTotalCount() {
@@ -96,7 +96,6 @@ public abstract class BaseTable {
                 cursor = sqliteDb.rawQuery("select count(*) from " + getTableName(), null);
                 if (cursor != null && cursor.moveToFirst()) {
                     int i = cursor.getInt(0);
-                    ;
                     return i;
                 }
             }

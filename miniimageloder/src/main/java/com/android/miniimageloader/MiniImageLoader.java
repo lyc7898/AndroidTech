@@ -72,6 +72,4 @@ public class MiniImageLoader extends ImageLoader{
         }
         return mImageCache;
     }
-
-
 }
