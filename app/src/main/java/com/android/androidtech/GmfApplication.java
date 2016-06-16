@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
+import com.android.androidtech.business.contact.ContactsManager;
 import com.android.miniimageloader.MiniImageLoader;
 import com.squareup.leakcanary.AndroidExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
@@ -28,6 +29,7 @@ public class GmfApplication extends Application {
         MiniImageLoader.progrem(mContext);
         MiniImageLoader.getInstance();
         GmfSharedPreferences.progrem(mContext);
+        ContactsManager.programStart(mContext);
     }
     public static  Context getmContext(){
         return mContext;
@@ -66,5 +68,7 @@ public class GmfApplication extends Application {
 
     private void InitModule(){
         DBManager.InitDB(mContext);
+        CrashHandler crashHandler = new CrashHandler();
+        crashHandler.init(this);
     }
 }

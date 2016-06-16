@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
 import com.android.androidtech.database.DBManager;
 import com.android.androidtech.utils.GLog;
@@ -73,7 +74,10 @@ public abstract class BaseTable {
     public SQLiteDatabase getSqliteReadDB() {
         return DBManager.getReadDB(mContext.getApplicationContext());
     }
-
+    /**
+     * 获取SQL STATEMENT
+     * */
+    public abstract SQLiteStatement getSQLiteStatement();
     /**
      * 获取表名
      *
