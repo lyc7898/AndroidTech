@@ -1,9 +1,11 @@
 package com.android.androidtech.fragment.performance.ui;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -145,5 +147,27 @@ public class OverDrawFragment extends BaseFragment {
     @Override
     protected void initData(Bundle data) {
 
+    }
+    PowerManager.WakeLock mWakeLock = null;
+    private void acquireWakeLock(Context ctx)
+    {
+        if (null == mWakeLock)
+        {
+            PowerManager pm = (PowerManager)ctx.getSystemService(Context.POWER_SERVICE);
+            mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK|PowerManager.ON_AFTER_RELEASE, "TestLocknService");
+            if (null != mWakeLock)
+            {
+                mWakeLock.acquire();
+            }
+        }
+    }
+    //释放设备电源锁
+    private void releaseWakeLock()
+    {
+        if (null != mWakeLock)
+        {
+            mWakeLock.release();
+            mWakeLock = null;
+        }
     }
 }
