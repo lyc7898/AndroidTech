@@ -43,6 +43,8 @@
             android:label="@string/title_activity_layout_per" >
         </activity>
         <service android:name="com.android.androidtech.monitor.memory.LeakCanaryService" />
+        <service android:name="com.android.androidtech.jobscheduler.JobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>
