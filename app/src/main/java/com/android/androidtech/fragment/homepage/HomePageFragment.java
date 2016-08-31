@@ -32,7 +32,7 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
     public final static String PUSH_DIALOG_TITLE = "dialog_title";
     public final static String PUSH_DIALOG_MSG = "dialog_message";
     private int mViewIndex = TAB_VIEW_00;
-    private MyFragmentStatePagerAdapter mAdapter;// 存放fragment供pager使用的adapter。
+    private MyFragmentStatePagerAdapter mAdapter;
     private BaseFragment[] mFragments;
     public GmfBaseViewPager mPagerDetail;
     public ImageView mSearchBtn;
@@ -112,70 +112,32 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
     }
 
     private void initView() {
-        //小红点事件注册
-//        ((PushManager) InstanceManager.getInstance(InstanceManager.INSTANCE_PUSH))
-//                .setOnNewFragChangedListener(mOnNewFlagChangedLitener);
         mFragments = new BaseFragment[3];
         PerformanceFragment fragment1 = new PerformanceFragment();
-       // fragment1.setOnNewFragChangedListener(mOnNewFlagChangedLitener);
         mFragments[0] = fragment1;
         fragment1.setRetainInstance(true);
         UiPerfMoniterFragment fragment2 = new UiPerfMoniterFragment();
-//        fragment2.setOnMusicHallsPageChanged(new OnMusicHallsPageChanged() {
-//
-//            @Override
-//            public void onMusicHallsPageChaged(MusicHallsFragment fragment) {
-//                ListViewWithViewPager v = fragment.getInterceptView();
-//                mPagerDetail.setInterceptView(v);
-//            }
-//        });
         fragment2.setRetainInstance(true);
         fragment2.setBg(Color.RED);
         mFragments[1] = fragment2;
         TestThirdFragment fragment3 = new TestThirdFragment();
         fragment3.setRetainInstance(true);
-        //fragment3.setOnNewFlagChangedLitener(mOnNewFlagChangedLitener);
         mFragments[2] = fragment3;
         mAdapter = new MyFragmentStatePagerAdapter(mFragmentManager);
         new setAdapterTask().execute();
-        mPagerDetail.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {// 给pager的滑动添加属性
+        mPagerDetail.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
-            public void onPageSelected(int position) {// 当一个pager被选中的时候
+            public void onPageSelected(int position) {
                 if (position >= 0 && position < mAdapter.getCount() && position != mViewIndex) {
                     setSelectedTab(position);
                 }
                 BaseFragment f = mFragments[position];
-//                OnShowListener onShowListener = f.getOnShowListener();
-//                if (onShowListener != null) {
-//                    if (onShowListener.isReShow()) {
-//                        onShowListener.onShowFromNet();
-//                    } else if (!onShowListener.isOnShow()) {
-//                        onShowListener.onShowFromLocal();
-//                    }
-//                }
-//                for (int i = 0; i < mFragments.length; i++) {
-//                    if (i != position) {
-//                        OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
-//                        if (onShowListener1 != null) {
-//                            onShowListener1.onFragmentUnShow();
-//                        }
-//
-//                    }
-//                }
                 if (position == 0) {
                     mPerfNewFlag.setVisibility(View.GONE);
                 } else if (position == 2) {
                     mFindNewFlag.setVisibility(View.GONE);
                 }
-//                ListViewWithViewPager v = null;
-//                QmfBaseViewPager vp = null;
-//                if (f instanceof MusicHallsFragment) {
-//                    v = ((MusicHallsFragment) f).getInterceptView();
-//                    vp = ((MusicHallsFragment) f).getViewPager();
-//                }
-//                mPagerDetail.setInterceptView(v);
-//                mPagerDetail.setViewPager(vp);
             }
 
             @Override
@@ -194,12 +156,6 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
         mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle arg = new Bundle();
-//                if (getHostActivity() == null) {
-//                    return;
-//                }
-//                ((MusicMainWithMiniBarActivity) getHostActivity()).addSecondFragment(OnlineSearchFragment.class, arg,
-//                        null);
             }
         });
         mMoreBtn.setOnClickListener(new View.OnClickListener() {
@@ -258,25 +214,6 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
             return;
         }
 
-//        OnShowListener onShowListener = mFragments[mViewIndex].getOnShowListener();
-//        if (onShowListener != null) {
-//            if (onShowListener.isReShow()) {
-//                onShowListener.onShowFromNet();
-//            } else if (!onShowListener.isOnShow()) {
-//                onShowListener.onShowFromLocal();
-//            }
-//        }
-//        for (int i = 0; i < mFragments.length; i++) {
-//            if (i != mViewIndex) {
-//                OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
-//                if (onShowListener1 != null) {
-//                    onShowListener1.onFragmentUnShow();
-//                }
-//
-//            }
-//        }
-
-        // 调用包含的fragment的对应生命周期
         for (Fragment f : mFragments) {
             if (f.isAdded()) {
                 f.onResume();
@@ -305,10 +242,6 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
     @Override
     protected void pause() {
         for (BaseFragment f : mFragments) {
-//            OnShowListener onShowListener = f.getOnShowListener();
-//            if (onShowListener != null) {
-//                onShowListener.onFragmentUnShow();
-//            }
             if (f.isAdded()) {
                 f.onPause();
             }
@@ -343,27 +276,15 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
     protected void initData(Bundle data) {
         mFragmentManager = getChildFragmentManager();
         int gotoAppIndex = data.getInt(APP_INDEX_KEY, TAB_VIEW_00);
-        // 退出时view索引
-        // int savedAppIndex = MusicPreferences.getInstance().getAppIndex() -
-        // APP_MAIN_1;
         if (gotoAppIndex != TAB_VIEW_00 && (gotoAppIndex - APP_MAIN_1) >= TAB_VIEW_00
                 && (gotoAppIndex - APP_MAIN_1) < TAB_VIEW_02 + 1) {
             mViewIndex = gotoAppIndex - APP_MAIN_1;
         }
-        // else if (savedAppIndex >= TAB_VIEW_00 && savedAppIndex < TAB_VIEW_02
-        // + 1) {
-        // mViewIndex = savedAppIndex;
-        // }不在记录退出时所在的tab，每次回来都回到我的音乐，这个之后可能修改先注释掉，by lugh
         else {
             mViewIndex = TAB_VIEW_00;
         }
     }
 
-    /**
-     * pager中要放的adapter，主要实现getItem和getCount和构造函数
-     *
-     * @author lughzhang
-     */
     public class MyFragmentStatePagerAdapter extends MyFragmentPagerAdapter {
         public MyFragmentStatePagerAdapter(FragmentManager fm) {
             super(fm);
@@ -386,9 +307,6 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
 
     }
 
-    /**
-     * @author lughzhang
-     */
     private class setAdapterTask extends AsyncTask<Void, Void, Void> {
         protected Void doInBackground(Void... params) {
             return null;
@@ -413,25 +331,5 @@ public class HomePageFragment extends BaseFragment implements PageIndexer {
             setSelectedTab(mViewIndex);
             mPagerDetail.setCurrentItem(mViewIndex);
         }
-//        if (mViewIndex == 0 && mFragments != null && mFragments.length > 0) {
-//            OnShowListener onShowListener = mFragments[mViewIndex].getOnShowListener();
-//            if (onShowListener != null) {
-//                if (onShowListener.isReShow()) {
-//                    onShowListener.onShowFromNet();
-//                } else if (!onShowListener.isOnShow()) {
-//                    onShowListener.onShowFromLocal();
-//                }
-//            }
-//            for (int i = 0; i < mFragments.length; i++) {
-//                if (i != mViewIndex) {
-//                    if (mFragments[i] != null) {
-//                        OnShowListener onShowListener1 = mFragments[i].getOnShowListener();
-//                        if (onShowListener1 != null) {
-//                            onShowListener1.onFragmentUnShow();
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
 }

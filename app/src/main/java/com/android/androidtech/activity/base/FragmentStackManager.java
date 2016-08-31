@@ -127,10 +127,8 @@ public class FragmentStackManager implements IFragmentStackManager {
     private void setFlipperHeadMode(BaseFragment fragment) {
     }
 
-    // -------------------------- OTHER METHODS --------------------------
 
     public void clear() {
-        // mManager.beginTransaction().remove(mManager.findFragmentByTag(mContentName)).commitAllowingStateLoss();
         if (empty()) {
             return;
         }
@@ -167,17 +165,6 @@ public class FragmentStackManager implements IFragmentStackManager {
         }
     }
 
-    /**
-     * 将一个BaseFragment添加到栈中。
-     *
-     * @param cls
-     *            二级页面Fragment类型 BaseSecondFragment.class
-     * @param args
-     *            要传入的Bundle参数
-     * @param hashMap
-     *            要赋值的字段
-     * @see com.renren.mobile.android.base.FragmentFieldsHelper
-     */
     public void push(Class<? extends BaseFragment> cls, Bundle args, HashMap<String, Object> hashMap) {
         if (mActivity.isFinishing() || mFlipperContent.isAnimating() || isPushOrPop())
             return;
@@ -199,13 +186,10 @@ public class FragmentStackManager implements IFragmentStackManager {
                 ft.commitAllowingStateLoss();
             sync();
         } catch (IllegalAccessException e) {
-            GLog.e(TAG, "--------Caught IllegalAccessException--------");
             GLog.e(TAG, e);
         } catch (InstantiationException e) {
-            GLog.e(TAG, "--------Caught InstantiationException--------");
             GLog.e(TAG, e);
         }catch(Exception e){
-            GLog.e(TAG, "--------Caught Exception--------");
             GLog.e(TAG, e);
         }
     }
