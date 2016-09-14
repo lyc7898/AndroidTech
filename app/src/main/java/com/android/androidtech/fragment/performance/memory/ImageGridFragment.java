@@ -14,10 +14,6 @@ import android.widget.ListView;
 
 import com.android.androidtech.R;
 import com.android.androidtech.fragment.base.BaseFragment;
-import com.android.androidtech.image.ImageCache;
-import com.android.androidtech.image.ImageFetcher;
-import com.android.androidtech.image.ImageWorker;
-import com.android.androidtech.image.RecyclingImageView;
 import com.android.miniimageloader.MiniImageLoader;
 import com.android.miniimageloader.config.BitmapConfig;
 
@@ -31,10 +27,10 @@ public class ImageGridFragment extends BaseFragment {
 
 //        mImageWorker = new ImageFetcher(getActivity(), 50);
 
-        ImageCache.ImageCacheParams cacheParams = new ImageCache.ImageCacheParams();
-
-        //
-        cacheParams.setMemCacheSizePercent(0.25f);
+//        ImageCache.ImageCacheParams cacheParams = new ImageCache.ImageCacheParams();
+//
+//        //
+//        cacheParams.setMemCacheSizePercent(0.25f);
 
 //        mImageWorker.initImageCache(getActivity().getSupportFragmentManager(), cacheParams);
     }

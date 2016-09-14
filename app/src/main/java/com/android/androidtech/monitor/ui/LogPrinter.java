@@ -20,9 +20,11 @@ public class LogPrinter implements Printer, UiPerfMonitorConfig {
     @Override
     public void println(String x) {
         if (startTime <= 0) {
+            //发送消息，同时启动线程保存状态
             startTime = System.currentTimeMillis();
             mLogPrinter.onStartLoop();
         } else {
+            //执行消息，同时复位ANR线程状态
             long endtime = System.currentTimeMillis();
 
             execuTime(x, startTime,endtime);
